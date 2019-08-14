@@ -1,0 +1,90 @@
+% Packages
+\input{commands}
+\input{breheny-code}
+\usepackage{etex}
+\reserveinserts{28}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{ctable}
+\usepackage{colortbl}
+%\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, citecolor=black, linkcolor=., urlcolor=cyan}
+
+% Color scheme
+\useinnertheme[shadow=true]{rounded}
+\useoutertheme{shadow}
+\definecolor{darkgray}{rgb}{.33,.33,.33}
+\definecolor{ukblue}{rgb}{0,0.36,0.67}
+\setbeamercolor*{palette primary}{fg=white,bg=ukblue}
+\setbeamercolor*{palette secondary}{fg=white,bg=ukblue!75!darkgray}
+\setbeamercolor*{palette tertiary}{fg=white,bg=ukblue!50!darkgray}
+\setbeamercolor*{palette quaternary}{fg=white,bg=darkgray}
+\setbeamercolor*{titlelike}{parent=palette primary}
+\setbeamercolor{block title}{fg=white,bg=ukblue}
+\setbeamercolor{block body}{fg=black,bg=gray!15}
+
+% Other presentation options
+\usefonttheme[onlymath]{serif}
+\setbeamertemplate{navigation symbols}{}
+
+% UI Logo
+\providecommand{\UIlogo}{
+\begin{textblock}{10}(13,12)
+  \includegraphics[height=1.5cm]{ui-logo}
+\end{textblock}}
+
+% Itemize/enumerate
+\setbeamertemplate{itemize item}{\raise.1ex\hbox{\color{ukblue}$\bullet$}} 
+\setbeamertemplate{itemize subitem}{\raise.1ex\hbox{\color{ukblue}$\circ$}}
+\setbeamertemplate{itemize subsubitem}{\scriptsize\raise.1ex\hbox{\color{ukblue}$\bullet$}}
+\setbeamertemplate{enumerate items}[default]
+\setbeamercolor{enumerate item}{fg=ukblue}
+\setbeamercolor{enumerate subitem}{fg=ukblue}
+\setbeamercolor{enumerate subsubitem}{fg=ukblue}
+
+% Footer
+\setbeamertemplate{footline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1ex]{author in head/foot}%
+        \usebeamerfont{author in head/foot}\hspace*{2ex}\insertauthor \hfill \affiliation\hspace*{2ex}
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1ex]{title in head/foot}%
+        \usebeamerfont{title in head/foot}\hspace*{2ex}\insertshorttitle{}\hfill
+        \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+    \end{beamercolorbox}}%
+    \vskip0pt%
+}
+
+% Citations
+\usepackage[citestyle=authoryear,backend=bibtex,doi=false,url=false,eprint=false,isbn=false,natbib=true,maxcitenames=2,uniquename=false,uniquelist=false]{biblatex}
+%usepackage[citestyle=authoryear,backend=bibtexdoi=false,url=false,eprint=false,isbn=false,natbib=true]{biblatex}
+\bibliography{articles-pres}
+\renewcommand*{\bibfont}{\small}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
+\setbeamertemplate{bibliography item}{\raise.1ex\hbox{\color{ukblue}$\bullet$}}
+\AtEveryBibitem{\clearfield{number}}
+\AtEveryBibitem{\clearfield{pages}}
+\AtEveryBibitem{\clearfield{month}}
+\defbibheading{bibliography}[\bibname]{}
+\renewbibmacro{in:}{}
+\setbeamertemplate{frametitle continuation}{}
+\DeclareCiteCommand{\citep}{(}{%
+  \printnames[author]{author}, \printfield{year}, \printfield{journaltitle}}{; }{)}
+\DeclareCiteCommand{\citet}{}{%
+  \printnames[author]{author} (\printfield{year}, \printfield{journaltitle})}{; }{}
+\DeclareNameFormat{default}{%
+  \renewcommand*{\multinamedelim}{\addsemicolon\addspace}%
+  \nameparts{#1}%
+  \usebibmacro{name:family}
+    {\namepartfamily}{}{}{}%
+    \usebibmacro{name:andothers}}
+
+% Formula highlighting
+\usepackage[beamer,customcolors]{hf-tikz}
+\hfsetfillcolor{ukblue!10}
+\hfsetbordercolor{ukblue!50}

@@ -1,0 +1,55 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{natbib}
+%\usepackage{url}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, citecolor=black, linkcolor=., urlcolor=cyan}
+\usepackage[shortlabels]{enumitem}
+\numberwithin{equation}{section}
+\usepackage{multicol}
+\usepackage{caption}
+\usepackage{ctable}
+\setupctable{pos=ht!}
+
+\input{commands}
+
+\renewcommand{\abstract}[1]{
+ \centerline{
+ \begin{minipage}{0.7\linewidth}
+ \hrule
+ \vskip 0.1in
+  \begin{center}
+    {\bf Abstract}
+  \end{center}
+  #1
+ \vskip 0.1in
+ \hrule
+ \end{minipage}}
+ \vskip 0.3in} 
+
+\usepackage{titling}
+\pretitle{\begin{center} \LARGE \bf}
+\posttitle{\par\end{center}\vskip 0.5em}
+\setlength{\droptitle}{-50pt}
+
+%\usepackage{parskip}
+%\usepackage{indentfirst}
+
+% Figures within a column...
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}\centering}
+  {\endminipage\par\medskip}
+
+
+\makeatletter
+\newenvironment{tablehere}
+{\def\@captype{table}}
+{}
+\newenvironment{figurehere}
+{\def\@captype{figure}}
+{}
+\newenvironment{alghere}
+{\def\@captype{algorithm}}
+{}
+\makeatother

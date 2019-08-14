@@ -1,0 +1,42 @@
+%% Code frames
+\usepackage{framed}
+\usepackage{xcolor}
+\definecolor{shadecolor}{rgb}{.9,.9,.9}
+\makeatletter
+\newenvironment{kframe}{%
+ \def\at@end@of@kframe{}%
+ \ifinner\ifhmode%
+  \def\at@end@of@kframe{\end{minipage}}%
+  \begin{minipage}{\columnwidth}%
+ \fi\fi%
+ \def\FrameCommand##1{\hskip\@totalleftmargin \hskip-\fboxsep
+ \colorbox{shadecolor}{##1}\hskip-\fboxsep
+     % There is no \\@totalrightmargin, so:
+     \hskip-\linewidth \hskip-\@totalleftmargin \hskip\columnwidth}%
+ \MakeFramed {\advance\hsize-\width
+   \@totalleftmargin\z@ \linewidth\hsize
+   \@setminipage}}%
+ {\par\unskip\endMakeFramed%
+ \at@end@of@kframe}
+\makeatother
+
+\usepackage{fancyvrb}
+\newenvironment{code}
+ {\VerbatimEnvironment \begin{small}\begin{kframe}\begin{Verbatim}}
+ {\end{Verbatim}\end{kframe}\end{small}}
+
+\DefineVerbatimEnvironment{codeInput}{code}{}
+
+\usepackage{upquote}
+
+%% Side by-side (SAS and R)
+%\setlength{\columnseprule}{0.2pt}
+%\setlength{\columnsep}{30pt}
+%\usepackage{multicol}
+\newenvironment{codes}{\begin{center}
+\begin{minipage}{6in}
+SAS: \hspace{2.8in} \texttt{R}:
+\begin{multicols}{2}}{
+\end{multicols}
+\end{minipage}
+\end{center}}
