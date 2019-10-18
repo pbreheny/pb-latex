@@ -1,8 +1,4 @@
-% Personal macro/commands
-\input{commands}
-
 % Packages
-\input{breheny-code}
 \usepackage{etex}
 \reserveinserts{28}
 \usepackage{amsmath}
@@ -13,10 +9,16 @@
 %\usepackage{url}
 \usepackage{hyperref}
 \hypersetup{colorlinks=true, citecolor=black, linkcolor=., urlcolor=cyan}
-%\usepackage{minted}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+
+% Code formatting
+%\usepackage{minted}
+\input{breheny-code}   % Must come after fontenc
+
+% Personal macro/commands
+\input{commands}
 
 % Color scheme
 \useinnertheme[shadow=true]{rounded}

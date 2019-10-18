@@ -1,6 +1,10 @@
-%% Code frames
+% Packages
+\usepackage{upquote}
+\usepackage{fancyvrb}
 \usepackage{framed}
 \usepackage{xcolor}
+
+% Code frames
 \definecolor{shadecolor}{rgb}{.9,.9,.9}
 \makeatletter
 \newenvironment{kframe}{%
@@ -19,24 +23,7 @@
  {\par\unskip\endMakeFramed%
  \at@end@of@kframe}
 \makeatother
-
-\usepackage{fancyvrb}
 \newenvironment{code}
  {\VerbatimEnvironment \begin{small}\begin{kframe}\begin{Verbatim}}
  {\end{Verbatim}\end{kframe}\end{small}}
-
 \DefineVerbatimEnvironment{codeInput}{code}{}
-
-\usepackage{upquote}
-
-%% Side by-side (SAS and R)
-%\setlength{\columnseprule}{0.2pt}
-%\setlength{\columnsep}{30pt}
-%\usepackage{multicol}
-\newenvironment{codes}{\begin{center}
-\begin{minipage}{6in}
-SAS: \hspace{2.8in} \texttt{R}:
-\begin{multicols}{2}}{
-\end{multicols}
-\end{minipage}
-\end{center}}

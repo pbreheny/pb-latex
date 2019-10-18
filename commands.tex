@@ -5,7 +5,7 @@
 \providecommand{\B}{\mathbf{B}}
 %\renewcommand{\c}{\mathbf{c}}
 \providecommand{\C}{\mathbf{C}}
-\renewcommand{\d}{\mathbf{d}}
+%\renewcommand{\d}{\mathbf{d}}
 \providecommand{\D}{\mathbf{D}}
 \providecommand{\e}{\mathbf{e}}
 \providecommand{\E}{\mathbf{E}}
@@ -32,7 +32,7 @@
 \renewcommand{\S}{\mathbf{S}}
 \renewcommand{\t}{\mathbf{t}}
 \providecommand{\T}{\mathbf{T}}
-\renewcommand{\u}{\mathbf{u}}
+%\renewcommand{\u}{\mathbf{u}}
 \providecommand{\U}{\mathbf{U}}
 \let\vaccent=\v
 \renewcommand{\v}{\mathbf{v}}
@@ -47,6 +47,14 @@
 \providecommand{\Z}{\mathbf{Z}}
 \providecommand{\one}{\mathbf{1}}
 \providecommand{\zero}{\mathbf{0}}
+
+%% Special roman letters -- conflict with fontenc
+\newcommand*{\origu}{}
+\let\origu\u
+\renewcommand*{\u}{\TextOrMath{\origu}{\mathbf u}}
+\newcommand*{\origd}{}
+\let\origd\d
+\renewcommand*{\d}{\TextOrMath{\origd}{\mathbf d}}
 
 %% Script letters
 \providecommand{\cA}{\mathcal{A}}
