@@ -65,11 +65,9 @@
 }
 
 % Citations
-\usepackage[citestyle=authoryear,doi=false,url=false,eprint=false,isbn=false,maxcitenames=2,uniquename=false,uniquelist=false]{biblatex}
-%\usepackage[citestyle=authoryear,backend=bibtex,doi=false,url=false,eprint=false,isbn=false,natbib=true,maxcitenames=2,uniquename=false,uniquelist=false]{biblatex}
-%usepackage[citestyle=authoryear,backend=bibtexdoi=false,url=false,eprint=false,isbn=false,natbib=true]{biblatex}
+\usepackage[citestyle=authoryear,doi=false,url=false,eprint=false,isbn=false,maxcitenames=2,natbib=true,uniquename=false,uniquelist=false]{biblatex}
 \bibliography{articles-pres}
-\renewcommand*{\bibfont}{\small}
+\renewcommand*{\bibfont}{\footnotesize}
 \setbeamercolor{bibliography entry author}{fg=black}
 \setbeamercolor{bibliography entry title}{fg=black}
 \setbeamercolor{bibliography entry note}{fg=black}
@@ -80,9 +78,9 @@
 \defbibheading{bibliography}[\bibname]{}
 \renewbibmacro{in:}{}
 \setbeamertemplate{frametitle continuation}{}
-\DeclareCiteCommand{\citep}{(}{%
+\DeclareCiteCommand{\parencite}{(}{%
   \printnames[author]{author}, \printfield{year}, \printfield{journaltitle}}{; }{)}
-\DeclareCiteCommand{\citet}{}{%
+\DeclareCiteCommand{\cite}{}{%
   \printnames[author]{author} (\printfield{year}, \printfield{journaltitle})}{; }{}
 \DeclareNameFormat{default}{%
   \renewcommand*{\multinamedelim}{\addsemicolon\addspace}%
@@ -90,6 +88,7 @@
   \usebibmacro{name:family}
     {\namepartfamily}{}{}{}%
     \usebibmacro{name:andothers}}
+\DeclareFieldFormat[article]{volume}{\textbf{#1}\addcolon\space}
 
 % Formula highlighting
 \usepackage[beamer,customcolors]{hf-tikz}
