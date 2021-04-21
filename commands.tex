@@ -59,6 +59,20 @@
 \let\origd\d
 \renewcommand*{\d}{\TextOrMath{\origd}{\mathbf d}}
 
+%% Roman letters with subscripts/tildes
+\providecommand{\rj}{\mathbf{r}_{-j}}
+\providecommand{\rr}{\tilde{\mathbf{r}}}
+\providecommand{\xx}{\tilde{\mathbf{x}}}
+\providecommand{\xj}{\mathbf{x}_{-j}}
+\providecommand{\Xj}{\mathbf{X}_{-j}}
+\providecommand{\XX}{\widetilde{\mathbf{X}}}
+\providecommand{\WW}{\widetilde{\mathbf{W}}}
+\providecommand{\yy}{\tilde{\mathbf{y}}}
+\providecommand{\yh}{\hat{y}}
+\providecommand{\byh}{\hat{\mathbf{y}}}
+\providecommand{\zz}{\tilde{\mathbf{z}}}
+\providecommand{\ZZ}{\tilde{\mathbf{Z}}}
+
 %% Script letters
 \providecommand{\cA}{\mathcal{A}}
 \providecommand{\cB}{\mathcal{B}}
@@ -86,7 +100,6 @@
 \providecommand{\ba}{\boldsymbol{\alpha}}
 \providecommand{\bah}{\hat{\boldsymbol{\alpha}}}
 \providecommand{\bb}{\boldsymbol{\beta}}
-\providecommand{\tb}{\widetilde{\beta}}
 \providecommand{\bh}{\widehat{\beta}}
 \providecommand{\bbh}{\widehat{\boldsymbol{\beta}}}
 \providecommand{\bd}{\boldsymbol{\delta}}
@@ -108,13 +121,11 @@
 \providecommand{\bm}{\boldsymbol{\mu}}
 \providecommand{\mh}{\hat{\mu}}
 \providecommand{\bmh}{\hat{\boldsymbol{\mu}}}
-\providecommand{\tbm}{\tilde{\boldsymbol{\mu}}}
 \providecommand{\lam}{\lambda}
 \providecommand{\Lam}{\Lambda}
 \providecommand{\bl}{\boldsymbol{\lambda}}
 \providecommand{\lh}{\hat{\lambda}}
 \providecommand{\bL}{\boldsymbol{\Lambda}}
-\providecommand{\tn}{\tilde{\nu}}
 \providecommand{\bO}{\boldsymbol{\Omega}}
 \providecommand{\bp}{\boldsymbol{\pi}}
 \providecommand{\ph}{\hat{\pi}}
@@ -127,30 +138,22 @@
 \providecommand{\ts}{\theta^*}
 \providecommand{\bth}{\hat{\boldsymbol{\theta}}}
 \providecommand{\bts}{\boldsymbol{\theta}^*}
-\providecommand{\tht}{\tilde{\theta}}
-\providecommand{\btt}{\tilde{\boldsymbol{\theta}}}
 \providecommand{\bT}{\boldsymbol{\Theta}}
 \providecommand{\btau}{\boldsymbol{\tau}}
 \providecommand{\tauh}{\hat{\tau}}
 \providecommand{\btauh}{\hat{\boldsymbol{\tau}}}
-\providecommand{\tbb}{\widetilde{\boldsymbol{\beta}}}
 \providecommand{\bbj}{\boldsymbol{\beta}_{-j}}
-\providecommand{\tbbj}{\widetilde{\boldsymbol{\beta}}_{-j}}
 \providecommand{\bbhj}{\widehat{\boldsymbol{\beta}}_{-j}}
 
-%% Subscripts/tildes
-\providecommand{\rj}{\mathbf{r}_{-j}}
-\providecommand{\rr}{\tilde{\mathbf{r}}}
-\providecommand{\xx}{\tilde{\mathbf{x}}}
-\providecommand{\xj}{\mathbf{x}_{-j}}
-\providecommand{\Xj}{\mathbf{X}_{-j}}
-\providecommand{\XX}{\widetilde{\mathbf{X}}}
-\providecommand{\WW}{\widetilde{\mathbf{W}}}
-\providecommand{\yy}{\tilde{\mathbf{y}}}
-\providecommand{\yh}{\hat{y}}
-\providecommand{\byh}{\hat{\mathbf{y}}}
-\providecommand{\zz}{\tilde{\mathbf{z}}}
-\providecommand{\ZZ}{\tilde{\mathbf{Z}}}
+%% Greek letters with tildes
+\providecommand{\betat}{\widetilde{\beta}}
+\providecommand{\bbjt}{\widetilde{\boldsymbol{\beta}}_{-j}}
+\providecommand{\bbt}{\widetilde{\boldsymbol{\beta}}}
+\providecommand{\bet}{\widetilde{\boldsymbol{\eta}}}
+\providecommand{\bmt}{\tilde{\boldsymbol{\mu}}}
+\providecommand{\nut}{\tilde{\nu}}
+\providecommand{\thetat}{\tilde{\theta}}
+\providecommand{\btt}{\tilde{\boldsymbol{\theta}}}
 
 %% Operators
 \renewcommand{\Pr}{\mathbb{P}}
