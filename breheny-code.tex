@@ -24,6 +24,10 @@
  \at@end@of@kframe}
 \makeatother
 \newenvironment{code}
- {\VerbatimEnvironment \begin{small}\begin{kframe}\begin{Verbatim}}
- {\end{Verbatim}\end{kframe}\end{small}}
+  {\VerbatimEnvironment \begin{small}\begin{kframe}\begin{Verbatim}}
+  {\end{Verbatim}\end{kframe}\end{small}}
 \DefineVerbatimEnvironment{codeInput}{code}{}
+\newenvironment{tinycode}
+  {\VerbatimEnvironment \begin{footnotesize}\begin{kframe}\begin{Verbatim}}
+  {\end{Verbatim}\end{kframe}\end{footnotesize}}
+\DefineVerbatimEnvironment{codeInput}{tinycode}{}
