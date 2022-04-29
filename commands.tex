@@ -1,63 +1,62 @@
-%% Roman letters
-\renewcommand{\a}{\mathbf{a}}
+% Uppercase roman letters
 \providecommand{\A}{\mathbf{A}}
-\renewcommand{\b}{\mathbf{b}}
 \providecommand{\B}{\mathbf{B}}
-\providecommand{\bc}{\mathbf{c}}
-%\renewcommand{\c}{\mathbf{c}}
 \providecommand{\C}{\mathbf{C}}
-%\renewcommand{\d}{\mathbf{d}}
 \providecommand{\D}{\mathbf{D}}
-\providecommand{\e}{\mathbf{e}}
 \providecommand{\E}{\mathbf{E}}
-\providecommand{\f}{\mathbf{f}}
 \providecommand{\F}{\mathbf{F}}
-\providecommand{\g}{\mathbf{g}}
 \providecommand{\G}{\mathbf{G}}
-\renewcommand{\H}{\mathbf{H}}
+\providecommand{\H}{\mathbf{H}}
 \providecommand{\I}{\mathbf{I}}
-\renewcommand{\j}{\mathbf{j}}
 \providecommand{\J}{\mathbf{J}}
 \providecommand{\K}{\mathbf{K}}
-\renewcommand{\l}{\mathbf{l}}
-\renewcommand{\L}{\mathbf{L}}
-\providecommand{\m}{\mathbf{m}}
+\providecommand{\L}{\mathbf{L}}
 \providecommand{\M}{\mathbf{M}}
-\providecommand{\n}{\mathbf{n}}
 \providecommand{\N}{\mathbf{N}}
-\providecommand{\q}{\mathbf{q}}
-\providecommand{\p}{\mathbf{p}}
-\renewcommand{\P}{\mathbf{P}}
+\providecommand{\O}{\mathbf{O}}
+\providecommand{\P}{\mathbf{P}}
 \providecommand{\Q}{\mathbf{Q}}
-\renewcommand{\r}{\mathbf{r}}
 \providecommand{\R}{\mathbf{R}}
-\providecommand{\s}{\mathbf{s}}
-\renewcommand{\S}{\mathbf{S}}
-\renewcommand{\t}{\mathbf{t}}
+\providecommand{\S}{\mathbf{S}}
 \providecommand{\T}{\mathbf{T}}
-%\renewcommand{\u}{\mathbf{u}}
 \providecommand{\U}{\mathbf{U}}
-\let\vaccent=\v
-\renewcommand{\v}{\mathbf{v}}
 \providecommand{\V}{\mathbf{V}}
-\providecommand{\w}{\mathbf{w}}
 \providecommand{\W}{\mathbf{W}}
-\providecommand{\x}{\mathbf{x}}
 \providecommand{\X}{\mathbf{X}}
-\providecommand{\y}{\mathbf{y}}
 \providecommand{\Y}{\mathbf{Y}}
-\providecommand{\z}{\mathbf{z}}
 \providecommand{\Z}{\mathbf{Z}}
-\providecommand{\one}{\mathbf{1}}
-\providecommand{\zero}{\mathbf{0}}
 
-%% Special roman letters -- conflict with fontenc
-\newcommand*{\origu}{}
-\let\origu\u
-\renewcommand*{\u}{\TextOrMath{\origu}{\mathbf u}}
-\newcommand*{\origd}{}
+% Lowercase roman letters (c, d, u, v have to be treated special; see end)
+\renewcommand{\a}{\mathbf{a}}
+\renewcommand{\b}{\mathbf{b}}
+\newcommand{\e}{\mathbf{e}}
+\newcommand{\f}{\mathbf{f}}
+\newcommand{\g}{\mathbf{g}}
+\newcommand{\h}{\mathbf{h}}
+\renewcommand{\i}{\mathbf{i}}
+\renewcommand{\j}{\mathbf{j}}
+\renewcommand{\k}{\mathbf{k}}
+\renewcommand{\l}{\mathbf{l}}
+\newcommand{\m}{\mathbf{m}}
+\newcommand{\n}{\mathbf{n}}
+\renewcommand{\o}{\mathbf{o}}
+\newcommand{\p}{\mathbf{p}}
+\newcommand{\q}{\mathbf{q}}
+\renewcommand{\r}{\mathbf{r}}
+\newcommand{\s}{\mathbf{s}}
+\renewcommand{\t}{\mathbf{t}}
+\newcommand{\w}{\mathbf{w}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\z}{\mathbf{z}}
+\let\origc\c
+\DeclareRobustCommand\c{\ifmmode\mathbf{c}\else\expandafter\origc\fi}
 \let\origd\d
-\renewcommand*{\d}{\TextOrMath{\origd}{\mathbf d}}
+\DeclareRobustCommand\d{\ifmmode\mathbf{d}\else\expandafter\origd\fi}
+\let\origd\u
+\DeclareRobustCommand\u{\ifmmode\mathbf{u}\else\expandafter\origu\fi}
+\let\origd\v
+\DeclareRobustCommand\v{\ifmmode\mathbf{v}\else\expandafter\origv\fi}
 
 %% Roman letters with subscripts/tildes
 \providecommand{\rj}{\mathbf{r}_{-j}}
@@ -238,6 +237,8 @@
 \providecommand{\IID}{\overset{\scriptscriptstyle \ind}{\sim}}
 
 %% Mathematical
+\providecommand{\one}{\mathbf{1}}
+\providecommand{\zero}{\mathbf{0}}
 \providecommand{\intii}{\int_{-\infty}^{\infty}}
 \providecommand{\real}{\mathbb{R}}
 %%\providecommand{\Real}{\mathds{R}} %% Requires dsfonts
