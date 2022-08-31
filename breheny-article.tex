@@ -40,15 +40,18 @@
  \vskip 0.1in
  \hrule
  \end{minipage}}
- \vskip 0.3in} 
+ \vskip 0.3in}
+
+% Easy switch between left and right equation numbering
+\makeatletter
+\newcommand{\leqnomode}{\tagsleft@true\let\veqno\@@leqno}
+\newcommand{\reqnomode}{\tagsleft@false\let\veqno\@@eqno}
+\makeatother
 
 \usepackage{titling}
 \pretitle{\begin{center} \LARGE \bf}
 \posttitle{\par\end{center}\vskip 0.5em}
 \setlength{\droptitle}{-50pt}
-
-%\usepackage{parskip}
-%\usepackage{indentfirst}
 
 % Figures within a column...
 \newenvironment{Figure}
