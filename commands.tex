@@ -225,11 +225,19 @@
 \providecommand{\const}{\textrm{constant}}
 
 % Fisher/observed information
-\usepackage[scr=boondox]{mathalfa}
+\usepackage[scr=boondox]{mathalpha}
 \providecommand{\oI}{\boldsymbol{\mathcal{I}}}
 \providecommand{\oV}{\boldsymbol{\mathcal{V}}}
+
+\makeatletter
+\@ifpackagelater{mathalpha}{2021/01/01}{%
+\providecommand{\fI}{\mathbfscr{I}}
+\providecommand{\fV}{\mathbfscr{V}}
+}{%
 \providecommand{\fI}{\mathbscr{I}}
 \providecommand{\fV}{\mathbscr{V}}
+}
+\makeatother
 
 % Independence
 \providecommand{\iid}{\overset{\text{iid}}{\sim}}
