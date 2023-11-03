@@ -58,7 +58,7 @@
 \let\origd\v
 \DeclareRobustCommand\v{\ifmmode\mathbf{v}\else\expandafter\origv\fi}
 
-%% Roman letters with hats
+% Roman letters with hats
 \providecommand{\fhat}{\hat{f}}
 \providecommand{\shat}{\hat{s}}
 \providecommand{\yhat}{\hat{y}}
@@ -66,12 +66,12 @@
 \providecommand{\bshat}{\hat{\mathbf{s}}}
 \providecommand{\byhat}{\hat{\mathbf{y}}}
 
-%% Roman letters with subscripts
+% Roman letters with subscripts
 \providecommand{\rj}{\mathbf{r}_{-j}}
 \providecommand{\xj}{\mathbf{x}_{-j}}
 \providecommand{\Xj}{\mathbf{X}_{-j}}
 
-%% Roman letters with tildes
+% Roman letters with tildes
 \providecommand{\rr}{\tilde{r}}
 \providecommand{\xx}{\tilde{x}}
 \providecommand{\yy}{\tilde{y}}
@@ -84,7 +84,7 @@
 \providecommand{\WW}{\widetilde{\mathbf{W}}}
 \providecommand{\ZZ}{\tilde{\mathbf{Z}}}
 
-%% Script letters
+% Script letters
 \providecommand{\cA}{\mathcal{A}}
 \providecommand{\cB}{\mathcal{B}}
 \providecommand{\cC}{\mathcal{C}}
@@ -106,7 +106,7 @@
 \providecommand{\cY}{\mathcal{Y}}
 \providecommand{\cZ}{\mathcal{Z}}
 
-%% Greek letters
+% Greek letters
 \providecommand{\ah}{\hat{\alpha}}
 \providecommand{\ba}{\boldsymbol{\alpha}}
 \providecommand{\bah}{\hat{\boldsymbol{\alpha}}}
@@ -157,7 +157,7 @@
 \providecommand{\bbj}{\boldsymbol{\beta}_{-j}}
 \providecommand{\bbhj}{\widehat{\boldsymbol{\beta}}_{-j}}
 
-%% Greek letters with tildes
+% Greek letters with tildes
 \providecommand{\betat}{\widetilde{\beta}}
 \providecommand{\bbjt}{\widetilde{\boldsymbol{\beta}}_{-j}}
 \providecommand{\bbt}{\widetilde{\boldsymbol{\beta}}}
@@ -170,7 +170,7 @@
 \providecommand{\thetat}{\tilde{\theta}}
 \providecommand{\btt}{\tilde{\boldsymbol{\theta}}}
 
-%% Operators
+% Operators
 \renewcommand{\Pr}{\mathbb{P}}
 \providecommand{\pr}{\textrm{Pr}}
 \providecommand{\Ex}{\mathbb{E}}
@@ -200,13 +200,18 @@
 \providecommand{\diag}{\textrm{diag}}
 \providecommand{\Tr}{^{\scriptscriptstyle\top}}
 
-%% Statistical
+% Statistical
 \renewcommand{\l}{\ell}
 \providecommand{\inP}{\overset{\textrm{P}}{\longrightarrow}}
 \providecommand{\inAS}{\overset{\textrm{as\,}}{\longrightarrow}}
 \providecommand{\inD}{\overset{\textrm{d}}{\longrightarrow}}
 \providecommand{\inQM}{\overset{\textrm{qm\,}}{\longrightarrow}}
 \providecommand{\adist}{\overset{\text{.}}{\sim}}
+\providecommand{\iid}{\overset{\text{iid}}{\sim}}
+\providecommand{\ind}{\perp\!\!\!\perp}
+\providecommand{\IID}{\overset{\scriptscriptstyle \ind}{\sim}}
+
+% Common abbreviations
 \providecommand{\AIC}{\textrm{AIC}}
 \providecommand{\BIC}{\textrm{BIC}}
 \providecommand{\CI}{\textrm{CI}}
@@ -221,6 +226,7 @@
 \providecommand{\GCV}{\textrm{GCV}}
 \providecommand{\KL}{\textrm{KL}}
 \providecommand{\LR}{\textrm{LR}}
+\providecommand{\MAF}{\textrm{MAF}}
 \providecommand{\ME}{\textrm{ME}}
 \providecommand{\MLE}{\textrm{MLE}}
 \providecommand{\MSE}{\textrm{MSE}}
@@ -243,7 +249,6 @@
 \usepackage[scr=boondox]{mathalpha}
 \providecommand{\oI}{\boldsymbol{\mathcal{I}}}
 \providecommand{\oV}{\boldsymbol{\mathcal{V}}}
-
 \makeatletter
 \@ifpackagelater{mathalpha}{2021/01/01}{%
 \providecommand{\fI}{\mathbfscr{I}}
@@ -254,17 +259,11 @@
 }
 \makeatother
 
-% Independence
-\providecommand{\iid}{\overset{\text{iid}}{\sim}}
-\providecommand{\ind}{\perp\!\!\!\perp}
-\providecommand{\IID}{\overset{\scriptscriptstyle \ind}{\sim}}
-
-%% Mathematical
+% Mathematical
 \providecommand{\one}{\mathbf{1}}
 \providecommand{\zero}{\mathbf{0}}
 \providecommand{\intii}{\int_{-\infty}^{\infty}}
 \providecommand{\real}{\mathbb{R}}
-%%\providecommand{\Real}{\mathds{R}} %% Requires dsfonts
 \providecommand{\dl}{d_-}
 \providecommand{\dr}{d_+}
 \providecommand{\sign}{\textrm{sign}}
@@ -281,7 +280,7 @@
 \DeclareMathOperator*{\argmax}{\arg\max}
 \providecommand{\pf}[2]{\frac{\partial #1}{\partial #2}}
 
-%% Equations
+% Equations
 \providecommand{\al}[2]{\begin{align}\label{#1}#2\end{align}}
 \providecommand{\as}[1]{\begin{align*}#1\end{align*}}
 \providecommand{\als}[2]{\begin{align}\label{#1}\begin{split}#2\end{split}\end{align}}
@@ -289,4 +288,3 @@
 
 % Other
 \providecommand{\note}[1]{\textcolor{red}{#1}}
-\providecommand{\MAF}{\textrm{MAF}}
