@@ -1,0 +1,39 @@
+---
+author: My name
+short-title: My course
+title: My lecture topic
+institute: University of Iowa
+date: 2025-01-01
+date-format: long
+latex-auto-install: false
+format:
+  beamer:
+    incremental: true
+    slide-level: 3
+    template: templates/notes.tex
+knitr:
+  opts_chunk:
+    fig-align: center
+    echo: true
+---
+
+# My section
+
+## My subsection
+
+### Introduction
+
+* Interesting point number 1
+* Interesting point number 2
+* Interesting point number 3
+  $$ \y = \X \bb + \veps $$
+
+### Here's some code and a plot
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| out-width: 80%
+rnorm(3)
+curve(sin, -pi, pi, bty = "n", las = 1)
+```

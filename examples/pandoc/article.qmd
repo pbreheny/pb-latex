@@ -1,0 +1,30 @@
+---
+title: "My article"
+latex-auto-install: false
+margins: compact
+format:
+  pdf:
+    template: templates/article.tex
+knitr:
+  opts_chunk:
+    fig-align: center
+    echo: true
+---
+
+\abstract{My abstract}
+
+# Introduction
+
+Text goes here.
+
+# Methods
+
+$$ \y = \X\bb + \bvep $$
+
+```{r}
+#| fig-height: 4
+#| fig-width: 6
+#| out-width: 80%
+rnorm(3)
+curve(sin, -pi, pi, bty = "n", las = 1)
+```

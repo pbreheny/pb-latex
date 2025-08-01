@@ -4,7 +4,6 @@
 \usepackage[absolute,overlay]{textpos}
 \usepackage{ctable}
 \usepackage{colortbl}
-%\usepackage{url}
 \usepackage{hyperref}
 \definecolor{steelblue}{HTML}{4682B4}
 \definecolor{darkgray}{rgb}{.33,.33,.33}
@@ -14,7 +13,6 @@
 \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
 
 % Code formatting
-%\usepackage{minted}
 \input{breheny-code}   % Must come after fontenc
 
 % Personal macro/commands
@@ -55,7 +53,7 @@
   \leavevmode%
   \hbox{%
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1ex]{author in head/foot}%
-        \usebeamerfont{author in head/foot}\hspace*{2ex}\insertauthor \hfill \affiliation\hspace*{2ex}
+        \usebeamerfont{author in head/foot}\hspace*{2ex}\insertauthor \hfill \insertinstitute\hspace*{2ex}
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1ex]{title in head/foot}%
         \usebeamerfont{title in head/foot}\hspace*{2ex}\insertshorttitle{}\hfill

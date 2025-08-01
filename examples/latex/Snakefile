@@ -1,0 +1,14 @@
+rule all:
+    input:
+        "article.pdf",
+        "notes.pdf"
+
+rule article:
+    input: "article.tex"
+    output: "article.pdf"
+    shell: "cleantex -q article.tex"
+
+rule notes:
+    input: "notes.tex"
+    output: "notes.pdf"
+    shell: "cleantex -eq notes.tex"

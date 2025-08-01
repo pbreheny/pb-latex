@@ -1,0 +1,50 @@
+$passoptions.latex()$
+\documentclass[$if(fontsize)$$fontsize$$else$12pt$endif$]{article}
+$if(margins)$
+\input{mar-$margins$}
+$endif$
+
+\input{breheny-article}
+
+$common.latex()$
+$after-header-includes.latex()$
+
+$for(header)$
+$header$
+$endfor$
+
+\title{$title$}
+$if(author)$
+\author{$for(author)$$author$$sep$ \and $endfor$}
+$else$
+\makeatletter
+\renewcommand{\maketitle}{%
+  \begin{center}
+    {\LARGE \@title \par}
+  \end{center}
+  \vskip 2em
+}
+\makeatother
+$endif$
+\date{$date$}
+
+\begin{document}
+
+$if(title)$
+\maketitle
+$endif$
+
+$if(number)$
+\pagestyle{plain}
+\thispagestyle{plain}
+$else$
+\pagestyle{empty}
+\thispagestyle{empty}
+$endif$
+
+$body$
+
+\bibliographystyle{ims-nourl}
+\bibliography{articles}
+
+\end{document}

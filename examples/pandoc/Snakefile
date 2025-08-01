@@ -1,0 +1,18 @@
+rule all:
+    input:
+        "article.pdf",
+        "notes.pdf"
+
+rule article:
+    input:
+        "templates/article.tex",
+        "article.qmd"
+    output: "article.pdf"
+    shell: "quarto render article.qmd"
+
+rule notes:
+    input:
+        "templates/notes.tex",
+        "notes.qmd"
+    output: "notes.pdf"
+    shell: "quarto render notes.qmd"

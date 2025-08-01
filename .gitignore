@@ -1,1 +1,3 @@
 .manifest
+.snakemake
+examples/pandoc/*_files

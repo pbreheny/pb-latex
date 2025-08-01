@@ -1,0 +1,41 @@
+\documentclass[11pt]{article}
+\input{breheny-article}
+\input{breheny-code}
+\input{breheny-algorithm}
+\input{mar-compact}
+% Or \input{mar-1} if you prefer
+
+% Include additional packages / define additional commands here
+
+\title{My title}
+\author{My name \\ Department of Something \\ University of Somewhere}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\abstract{My abstract}
+
+Text goes here.
+
+$$ \y = \X\bb + \bvep $$
+
+\begin{code}
+  fit <- lm(y ~ age + treatment, data = my_data)
+\end{code}
+
+\begin{algorithm}
+\caption{\label{Alg:gd-lasso} Group descent algorithm for the group lasso}
+  \begin{algorithmic}
+    \Repeat
+    \For{$j = 1, 2, \ldots, J$}
+      \State $\z_j = \X_j^T\r + \bb_j$
+      \State $\bb_j' \gets S\left(\z_j,\lam_j\right)$
+      \State $\r' \gets \r - \X_j(\bb_j'-\bb_j)$
+    \EndFor
+    \Until convergence
+  \end{algorithmic}
+\end{algorithm}
+
+\end{document}

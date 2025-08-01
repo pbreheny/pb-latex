@@ -1,0 +1,32 @@
+\documentclass{beamer}
+\input{breheny-notes}
+\author{My name}
+\institute{University of Somewhere}
+\title[My course]{My lecture topic}
+\date{August 21}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\section{My section}
+
+\begin{frame}
+  \frametitle{Introduction}
+  \begin{itemize}
+  \item <1-> Interesting point number 1
+  \item <2-> Interesting point number 2
+  \item <3-> Interesting point number 3
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{This slide has code}
+  \begin{code}
+    fit <- lm(y ~ age + treatment, data = my_data)
+  \end{code}
+\end{frame}
+
+\end{document}
