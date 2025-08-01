@@ -1,0 +1,126 @@
+#!/usr/bin/env Rscript
+suppressMessages({
+  library(docopt)
+  library(stringr)
+  library(glue)
+})
+doc <- "Create a \"flat\" tex file
+
+Usage: singletex <infile> <outfile> [-h]
+
+Fills in input statements, fig/ references, bibliography, etc., so that the
+resulting tex file (output to stdin) is portable and can be
+compiled anywhere with no additional input files.
+
+Arguments:
+  infile     Input .tex file (manuscript.tex)
+  outfile    Output .tex file (sub/arxiv/manuscript.tex)
+
+Options:
+  -h         Show this help screen"
+opt <- docopt(doc)
+
+new <- readLines(opt$infile)
+
+# Algorithm
+old <- new
+ind <- which(old == "\\input{breheny-algorithm}")
+if (length(ind)) {
+  new <- old[1:(ind - 1)]
+  buf <- readLines("~/texmf/tex/latex/pb-latex/breheny-algorithm.tex")
+  new <- c(new, buf, old[-(1:ind)])
+}
+
+# Article
+old <- new
+ind <- which(old == "\\input{breheny-article}")
+if (length(ind)) {
+  new <- old[1:(ind - 1)]
+  buf <- readLines("~/texmf/tex/latex/pb-latex/breheny-article.tex")
+  new <- c(new, buf, old[-(1:ind)])
+}
+
+# Margins
+old <- new
+ind <- which(old == "\\input{mar-1}")
+if (length(ind)) {
+  new <- old[1:(ind - 1)]
+  buf <- readLines("~/texmf/tex/latex/pb-latex/mar-1.tex")
+  new <- c(new, buf, old[-(1:ind)])
+}
+old <- new
+ind <- which(old == "\\input{mar-compact}")
+if (length(ind)) {
+  new <- old[1:(ind - 1)]
+  buf <- readLines("~/texmf/tex/latex/pb-latex/mar-compact.tex")
+  new <- c(new, buf, old[-(1:ind)])
+}
+
+# Commands
+old <- new
+ind <- which(old == "\\input{commands}")
+if (length(ind)) {
+  new <- old[1:(ind - 1)]
+  if (file.exists('commands.tex')) {
+    buf <- readLines('commands.tex')
+  } else {
+    buf <- readLines("~/texmf/tex/latex/pb-latex/commands.tex")
+  }
+  new <- c(new, buf, old[-(1:ind)])
+}
+
+# Code
+old <- new
+ind <- which(old == "\\input{breheny-code}")
+if (length(ind)) {
+  new <- old[1:(ind - 1)]
+  buf <- readLines("~/texmf/tex/latex/pb-latex/breheny-code.tex")
+  new <- c(new, buf, old[-(1:ind)])
+}
+
+# Scan for other inputs
+repeat {
+  ind <- grep("\\input\\{", new)[1]
+  if (is.na(ind)) break
+  old <- new
+  filename <- gsub("\\}", "", old[ind])
+  filename <- gsub("\\\\input\\{", "", filename) |> trimws()
+  if (!file.exists(filename)) filename <- paste(filename, ".tex", sep = "")
+  new <- old[1:(ind - 1)]
+  buf <- readLines(filename)
+  new <- c(new, buf, old[-(1:ind)])
+}
+
+# Bibliography
+old <- new
+ind <- grep("\\\\bibliography\\{", old)
+if (length(ind)) {
+  tmpdir <- '__singletex_tmp'
+  dir.create(tmpdir)
+  cmd <- paste0('pdflatex -output-directory=', tmpdir, ' ', opt$infile, ' > /dev/null')
+  system(cmd)
+  cmd <- paste0('bibtex ', tmpdir, '/', gsub("\\.tex", "\\.aux", opt$infile), ' > /dev/null')
+  system(cmd)
+  buf <- readLines(paste0(tmpdir, '/', gsub("\\.tex", "\\.bbl", opt$infile)))
+  if (!length(buf)) stop('Problem building .bbl file')
+  new <- old[1:(ind - 1)]
+  new <- c(new, buf, old[-(1:ind)])
+  unlink(tmpdir, recursive = TRUE)
+}
+
+# Write tex
+writeLines(new, opt$outfile)
+
+# Copy figs
+fig_dir_line <- grep('graphicspath', new)
+add_ext <- function(path) {
+  ifelse(str_detect(path, fixed(".")), path, glue("{path}.pdf"))
+}
+if (length(fig_dir_line)) {
+  fig_dir <- gsub('.*\\{\\{([^\\}]+)\\}\\}', '\\1', new[fig_dir_line], perl = TRUE)
+  fig_lines <- grep('^[^%].*includegraphics', new, value = TRUE)
+  fig <- gsub('[^\\{]+\\{([^\\}]+)\\}.*', '\\1', fig_lines, perl = TRUE) |>
+    add_ext()
+  file.copy(paste0(fig_dir, fig), dirname(opt$outfile)) |>
+    invisible()
+}

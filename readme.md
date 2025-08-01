@@ -71,6 +71,17 @@ The other files are helper files than can be used in either kind of output (arti
 * `commands`: A bunch of macro shortcuts, such as `\x` for `\mathbf{x}`.
 * `mar-1` and `mar-compact`: These set the margins for `breheny-article` to either 1 inch all around or the smallest margins I consider reasonable.
 
+The package also provides two scripts I wrote that I think are useful in working with LaTeX (these are completely separate from the templates and there are no dependencies between them):
+
+* `cleantex`: Build a LaTeX document "cleanly", meaning (a) don't leave behind a bunch of intermediate files and (b) don't produce thousands of lines of output; I only want to see meaningful warnings.
+* `singletex`: When submitting an article to a journal or arXiv, you often need a "flat" version of your `.tex` file: no subdirectories, no `\input{}` statements, no calls to `bibtex`, etc. `singletex` packages a LaTeX document in this manner, automating everything. Just run something like
+
+ ``` bash
+ singletex my-project.tex arxiv/my-project.tex
+ ```
+
+ and the version in the `arxiv` folder will be a flattened version of the original.
+
 ## Examples
 
 Two kinds of examples are provided; both the source code and the resulting `.pdf` are included so that you can see what the output looks like.
