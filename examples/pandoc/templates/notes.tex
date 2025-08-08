@@ -4,10 +4,17 @@ $passoptions.latex()$
 
 $common.latex()$
 $after-header-includes.latex()$
+\setlength{\parskip}{0pt}
 
 $for(header)$
 $header$
 $endfor$
+
+$if(sansfont)$
+\usepackage{fontspec}
+\setsansfont{$sansfont$}
+\usefonttheme{professionalfonts}
+$endif$
 
 % Make code smaller
 \AtBeginDocument{%
@@ -26,6 +33,12 @@ $endif$
 $if(institute)$
 \institute{$institute$}
 $endif$
+$if(coursename)$
+\def\coursename{$coursename$}
+$endif$
+$if(coursenumber)$
+\def\coursenumber{$coursenumber$}
+$endif$
 
 \date{$date$}
 
@@ -39,15 +52,8 @@ $endif$
 $if(title)$
 \begin{frame}
   \titlepage
-  $if(institute)$
-  \UIlogo
-  $endif$  
   $if(joint)$
   \begin{center}
-  \begin{small}
-  Joint work with \\
-  $joint$
-  \end{small}
   \end{center}
   $endif$
 \end{frame}

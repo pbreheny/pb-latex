@@ -33,6 +33,12 @@
 \usefonttheme[onlymath]{serif}
 \setbeamertemplate{navigation symbols}{}
 
+% UI Logo
+\providecommand{\UIlogo}{
+\begin{textblock}{10}(13,12)
+  \includegraphics[height=1.5cm]{ui-logo}
+\end{textblock}}
+
 % Itemize/enumerate
 \setbeamertemplate{itemize item}{\raise.1ex\hbox{\color{steelblue}$\bullet$}} 
 \setbeamertemplate{itemize subitem}{\raise.1ex\hbox{\color{steelblue}$\circ$}}
@@ -47,12 +53,10 @@
   \leavevmode%
   \hbox{%
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1ex]{author in head/foot}%
-      \usebeamerfont{title in head/foot}\hspace*{2ex}\coursename\hfill
-      \coursenumber\hspace*{2ex} 
-      % \usebeamerfont{author in head/foot}\hspace*{2ex}\insertauthor
+        \usebeamerfont{author in head/foot}\hspace*{2ex}\insertsection: \insertsubsection
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1ex]{title in head/foot}%
-        \usebeamerfont{title in head/foot}\hspace*{2ex}\insertauthor{}\hfill
+        \usebeamerfont{title in head/foot}\hspace*{2ex}\insertshorttitle{}\hfill
         \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
     \end{beamercolorbox}}%
     \vskip0pt%

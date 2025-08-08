@@ -3,6 +3,8 @@ author: My name
 short-title: My course
 title: My lecture topic
 institute: University of Iowa
+coursename: My amazing course
+coursenumber: Biostatistics 1234
 date: 2025-01-01
 date-format: long
 latex-auto-install: false
