@@ -275,10 +275,9 @@
 \providecommand{\dom}{\textrm{dom}}
 \providecommand{\sign}{\textrm{sign}}
 \providecommand{\given}{\,\vert\,}
-\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
-\providecommand{\sabs}[1]{\lvert#1\rvert}
-\providecommand{\norm}[1]{\lVert#1\rVert}
-\providecommand{\bignorm}[1]{\left\lVert#1\right\rVert}
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 \providecommand{\gl}{\prec}
 \providecommand{\gle}{\preceq}
 \providecommand{\gg}{\succ}
