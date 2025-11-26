@@ -97,7 +97,7 @@ ind <- grep("\\\\bibliography\\{", old)
 if (length(ind)) {
   tmpdir <- '__singletex_tmp'
   dir.create(tmpdir)
-  cmd <- paste0('pdflatex -output-directory=', tmpdir, ' ', opt$infile, ' > /dev/null')
+  cmd <- paste0('lualatex -interaction=nonstopmode -output-directory=', tmpdir, ' ', opt$infile, ' > /dev/null')
   system(cmd)
   cmd <- paste0('bibtex ', tmpdir, '/', gsub("\\.tex", "\\.aux", opt$infile), ' > /dev/null')
   system(cmd)
