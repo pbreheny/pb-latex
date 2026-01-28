@@ -12,6 +12,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\usepackage{etoolbox}
 
 % Code formatting
 \input{breheny-code}   % Must come after fontenc
@@ -43,6 +44,10 @@
 \setbeamercolor{enumerate subitem}{fg=steelblue}
 \setbeamercolor{enumerate subsubitem}{fg=steelblue}
 
+% Fix table spacing
+\AtBeginEnvironment{tabular}{\vspace{0.4em}}
+\AtEndEnvironment{tabular}{\vspace{-0.3em}}
+
 % Footer
 \setbeamertemplate{footline}{
   \leavevmode%
@@ -63,4 +68,10 @@
 \usepackage[beamer,customcolors]{hf-tikz}
 \hfsetfillcolor{steelblue!10}
 \hfsetbordercolor{steelblue!50}
+
+% Make code smaller
+\AtBeginDocument{%
+  \let\oldttfamily\ttfamily
+  \renewcommand{\ttfamily}{\oldttfamily\small}
+}
 

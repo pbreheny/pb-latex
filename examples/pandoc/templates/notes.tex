@@ -4,7 +4,6 @@ $passoptions.latex()$
 
 $common.latex()$
 $after-header-includes.latex()$
-\setlength{\parskip}{0pt}
 
 $for(header)$
 $header$
@@ -16,11 +15,8 @@ $if(sansfont)$
 \usefonttheme{professionalfonts}
 $endif$
 
-% Make code smaller
-\AtBeginDocument{%
-  \let\oldttfamily\ttfamily
-  \renewcommand{\ttfamily}{\oldttfamily\small}
-}
+% I don't like Quarto's default spacing
+\setlength{\parskip}{0.5ex}
 
 \title$if(short-title)$[$short-title$]$endif${$title$}
 
