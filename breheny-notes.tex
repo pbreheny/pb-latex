@@ -13,6 +13,7 @@
 \usepackage{lmodern}
 \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
 \usepackage{etoolbox}
+\usepackage{fancyvrb}
 
 % Code formatting
 \input{breheny-code}   % Must come after fontenc
@@ -30,6 +31,7 @@
 \setbeamercolor*{titlelike}{fg=white,bg=steelblue}
 \setbeamercolor{block title}{fg=white,bg=steelblue}
 \setbeamercolor{block body}{fg=black,bg=gray!15}
+\newcommand{\hl}[1]{\textcolor{steelblue}{#1}}
 
 % Other presentation options
 \usefonttheme[onlymath]{serif}
@@ -69,9 +71,8 @@
 \hfsetfillcolor{steelblue!10}
 \hfsetbordercolor{steelblue!50}
 
-% Make code smaller
-\AtBeginDocument{%
-  \let\oldttfamily\ttfamily
-  \renewcommand{\ttfamily}{\oldttfamily\small}
+% Make code blocks smaller
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{%
+  commandchars=\\\{\},
+  fontsize=\small
 }
-
