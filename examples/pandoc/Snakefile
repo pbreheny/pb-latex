@@ -1,18 +1,18 @@
 rule all:
     input:
         "article.pdf",
-        "notes.pdf"
+        "talk.pdf"
 
 rule article:
     input:
-        "templates/article.tex",
+        "../../templates/article.tex",
         "article.qmd"
     output: "article.pdf"
     shell: "quarto render article.qmd"
 
-rule notes:
+rule talk:
     input:
-        "templates/notes.tex",
-        "notes.qmd"
-    output: "notes.pdf"
-    shell: "quarto render notes.qmd"
+        "../../templates/slides.tex",
+        "talk.qmd"
+    output: "talk.pdf"
+    shell: "quarto render talk.qmd"

@@ -1,14 +1,22 @@
 rule all:
     input:
         "article.pdf",
-        "notes.pdf"
+        "talk.pdf"
 
 rule article:
     input: "article.tex"
     output: "article.pdf"
-    shell: "cleantex -q article.tex"
+    shell:
+        """
+        latexmk --xelatex -output-directory=article article.tex
+        cp article/article.pdf .
+        """
 
-rule notes:
-    input: "notes.tex"
-    output: "notes.pdf"
-    shell: "cleantex -eq notes.tex"
+rule talk:
+    input: "talk.tex"
+    output: "talk.pdf"
+    shell:
+        """
+        latexmk --xelatex -output-directory=talk talk.tex
+        cp talk/talk.pdf .
+        """

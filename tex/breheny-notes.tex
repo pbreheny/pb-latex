@@ -1,24 +1,25 @@
-% Packages
+% Math
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage[absolute,overlay]{textpos}
+\usepackage{mathtools}
+
+% Tables
 \usepackage{booktabs}
-\usepackage{colortbl}
-\usepackage{hyperref}
+
+% Colors, links, highlighting
 \definecolor{steelblue}{HTML}{4682B4}
 \definecolor{darkgray}{rgb}{.33,.33,.33}
-\hypersetup{colorlinks=true, citecolor=black, linkcolor=., urlcolor=steelblue}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+\definecolor{goodcolor}{HTML}{2E7D32}
+\definecolor{warncolor}{HTML}{E69F00}
+\newcommand{\hl}[1]{\textcolor{steelblue}{#1}}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=white,
+  citecolor=black,
+  urlcolor=steelblue
+}
 
-% Code formatting
-\input{breheny-code}   % Must come after fontenc
-
-% Personal macro/commands
-\input{commands}
-
-% Color scheme
+% Beamer theme
 \useinnertheme[shadow=false]{rounded}
 \useoutertheme{split}
 \setbeamercolor*{palette primary}{fg=white,bg=steelblue!50!darkgray}
@@ -29,15 +30,12 @@
 \setbeamercolor{block title}{fg=white,bg=steelblue}
 \setbeamercolor{block body}{fg=black,bg=gray!15}
 
+% Personal macro/commands
+\input{commands}
+
 % Other presentation options
 \usefonttheme[onlymath]{serif}
 \setbeamertemplate{navigation symbols}{}
-
-% UI Logo
-\providecommand{\UIlogo}{
-\begin{textblock}{10}(13,12)
-  \includegraphics[height=1.5cm]{ui-logo}
-\end{textblock}}
 
 % Itemize/enumerate
 \setbeamertemplate{itemize item}{\raise.1ex\hbox{\color{steelblue}$\bullet$}} 
@@ -48,15 +46,20 @@
 \setbeamercolor{enumerate subitem}{fg=steelblue}
 \setbeamercolor{enumerate subsubitem}{fg=steelblue}
 
+% Fix table spacing
+\AtBeginEnvironment{tabular}{\vspace{0.4em}}
+\AtEndEnvironment{tabular}{\vspace{-0.3em}}
+
 % Footer
 \setbeamertemplate{footline}{
   \leavevmode%
   \hbox{%
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1ex]{author in head/foot}%
-        \usebeamerfont{author in head/foot}\hspace*{2ex}\insertsection: \insertsubsection
+      \usebeamerfont{title in head/foot}\hspace*{2ex}\footera\hfill
+      \footerb\hspace*{2ex} 
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1ex]{title in head/foot}%
-        \usebeamerfont{title in head/foot}\hspace*{2ex}\insertshorttitle{}\hfill
+        \usebeamerfont{title in head/foot}\hspace*{2ex}\footerc{}\hfill
         \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
     \end{beamercolorbox}}%
     \vskip0pt%
@@ -67,3 +70,19 @@
 \hfsetfillcolor{steelblue!10}
 \hfsetbordercolor{steelblue!50}
 
+% Make code blocks smaller
+\usepackage{fancyvrb}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{%
+  commandchars=\\\{\},
+  fontsize=\small
+}
+
+% Citation formatting
+\newcommand{\scite}[1]{{\scriptsize\color{darkgray}(#1)}}
+
+% Icons and logo
+\usepackage{textpos}
+\usepackage{fontawesome5}
+\newcommand{\xmark}{\textcolor{red}{\faTimes}}
+\newcommand{\cmark}{\textcolor{goodcolor}{\faCheck}}
+\newcommand{\warn}{\textcolor{warncolor}{\faExclamationTriangle}}

@@ -5,15 +5,13 @@ $passoptions.latex()$
 $common.latex()$
 $after-header-includes.latex()$
 
+$if(graphicspath)$
+\graphicspath{{$graphicspath$}}
+$endif$
+
 $for(header)$
 $header$
 $endfor$
-
-$if(sansfont)$
-\usepackage{fontspec}
-\setsansfont{$sansfont$}
-\usefonttheme{professionalfonts}
-$endif$
 
 % I don't like Quarto's default spacing
 \setlength{\parskip}{0.5ex}
@@ -26,14 +24,23 @@ $endif$
 $if(affiliation)$
 \newcommand{\affiliation}{$affiliation$}
 $endif$
+
+$if(affiliation)$
+\newcommand{\affiliation}{$affiliation$}
+$endif$
+
 $if(institute)$
-\institute{$institute$}
+\institute{$for(institute)$ $institute$ $sep$ \\ $endfor$}
 $endif$
-$if(coursename)$
-\def\coursename{$coursename$}
-$endif$
-$if(coursenumber)$
-\def\coursenumber{$coursenumber$}
+
+$if(notes)$
+\def\footera{$coursename$}
+\def\footerb{$coursenumber$}
+\def\footerc{$author$}
+$else$
+\def\footera{$author$}
+\def\footerb{$venue$}
+\def\footerc{$short$}
 $endif$
 
 \date{$date$}
@@ -48,8 +55,15 @@ $endif$
 $if(title)$
 \begin{frame}
   \titlepage
+  $if(logo)$
+  \UIlogo
+  $endif$  
   $if(joint)$
   \begin{center}
+    \begin{small}
+      Joint work with \\
+      $joint$
+    \end{small}
   \end{center}
   $endif$
 \end{frame}

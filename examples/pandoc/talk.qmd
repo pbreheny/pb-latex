@@ -1,10 +1,9 @@
 ---
 author: My name
-short-title: My course
-title: My lecture topic
+short: My topic
+title: A long description of my topic
 institute: University of Iowa
-coursename: My amazing course
-coursenumber: Biostatistics 1234
+venue: Conference ABC
 date: 2025-01-01
 date-format: long
 latex-auto-install: false
@@ -12,7 +11,7 @@ format:
   beamer:
     incremental: true
     slide-level: 3
-    template: templates/notes.tex
+    template: ../../templates/slides.tex
 knitr:
   opts_chunk:
     fig-align: center
