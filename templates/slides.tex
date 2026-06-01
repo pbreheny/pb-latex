@@ -1,6 +1,12 @@
 $passoptions.latex()$
 \documentclass[table$if(handout)$,handout$endif$]{beamer}
-\input{breheny-notes}
+
+\input{breheny-slides}
+$if(unicode)$
+\input{math-unicode}
+$else$
+\input{math-traditional}
+$endif$
 
 $common.latex()$
 $after-header-includes.latex()$

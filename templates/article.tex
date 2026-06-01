@@ -5,6 +5,11 @@ $if(margins)$
 $endif$
 
 \input{breheny-article}
+$if(unicode)$
+\input{math-unicode}
+$else$
+\input{math-traditional}
+$endif$
 
 $common.latex()$
 $after-header-includes.latex()$

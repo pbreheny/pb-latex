@@ -1,9 +1,16 @@
 \documentclass[11pt]{article}
+
+% Choose one:
+\input{mar-compact} % Compact margins
+% \input{mar-1}     % Wider margins
+
+% Choose one:
+\input{math-traditional} % Traditional LaTeX math fonts (most portable)
+% \input{math-unicode}   % Modern Unicode math fonts (XeLaTeX/LuaLaTeX)
+
 \input{breheny-article}
 \input{breheny-code}
 \input{breheny-algorithm}
-\input{mar-compact}
-% Or \input{mar-1} if you prefer
 
 % Include additional packages / define additional commands here
 
@@ -30,7 +37,7 @@ $$ \y = \X\bb + \bvep $$
   \begin{algorithmic}
     \Repeat
     \For{$j = 1, 2, \ldots, J$}
-      \State $\z_j = \X_j^T\r + \bb_j$
+      \State $\z_j = \X_j \Tr \r + \bb_j$
       \State $\bb_j' \gets S\left(\z_j,\lam_j\right)$
       \State $\r' \gets \r - \X_j(\bb_j'-\bb_j)$
     \EndFor

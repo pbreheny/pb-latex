@@ -1,62 +1,73 @@
+% Packages and fonts
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{fontspec}
+\usepackage{mathtools}
+\usepackage{unicode-math}
+\setmainfont{Latin Modern Roman}
+\setmathfont{Latin Modern Math}
+\setmathfont[range=\mathbfscr]{Libertinus Math}
+\numberwithin{equation}{section}
+
 % Uppercase roman letters
-\providecommand{\A}{\mathbf{A}}
-\providecommand{\B}{\mathbf{B}}
-\providecommand{\C}{\mathbf{C}}
-\providecommand{\D}{\mathbf{D}}
-\providecommand{\E}{\mathbf{E}}
-\providecommand{\F}{\mathbf{F}}
-\providecommand{\G}{\mathbf{G}}
-\renewcommand{\H}{\mathbf{H}}
-\providecommand{\I}{\mathbf{I}}
-\providecommand{\J}{\mathbf{J}}
-\providecommand{\K}{\mathbf{K}}
-\providecommand{\L}{\mathbf{L}}
-\providecommand{\M}{\mathbf{M}}
-\providecommand{\N}{\mathbf{N}}
-\providecommand{\O}{\mathbf{O}}
-\renewcommand{\P}{\mathbf{P}}
-\providecommand{\Q}{\mathbf{Q}}
-\providecommand{\R}{\mathbf{R}}
-\renewcommand{\S}{\mathbf{S}}
-\providecommand{\T}{\mathbf{T}}
-\providecommand{\U}{\mathbf{U}}
-\providecommand{\V}{\mathbf{V}}
-\providecommand{\W}{\mathbf{W}}
-\providecommand{\X}{\mathbf{X}}
-\providecommand{\Y}{\mathbf{Y}}
-\providecommand{\Z}{\mathbf{Z}}
+\providecommand{\A}{\symbf{A}}
+\providecommand{\B}{\symbf{B}}
+\providecommand{\C}{\symbf{C}}
+\providecommand{\D}{\symbf{D}}
+\providecommand{\E}{\symbf{E}}
+\providecommand{\F}{\symbf{F}}
+\providecommand{\G}{\symbf{G}}
+\renewcommand{\H}{\symbf{H}}
+\providecommand{\I}{\symbf{I}}
+\providecommand{\J}{\symbf{J}}
+\providecommand{\K}{\symbf{K}}
+\providecommand{\L}{\symbf{L}}
+\providecommand{\M}{\symbf{M}}
+\providecommand{\N}{\symbf{N}}
+\providecommand{\O}{\symbf{O}}
+\renewcommand{\P}{\symbf{P}}
+\providecommand{\Q}{\symbf{Q}}
+\providecommand{\R}{\symbf{R}}
+\renewcommand{\S}{\symbf{S}}
+\providecommand{\T}{\symbf{T}}
+\providecommand{\U}{\symbf{U}}
+\providecommand{\V}{\symbf{V}}
+\providecommand{\W}{\symbf{W}}
+\providecommand{\X}{\symbf{X}}
+\providecommand{\Y}{\symbf{Y}}
+\providecommand{\Z}{\symbf{Z}}
 
 % Lowercase roman letters (c, d, u, v have to be treated special; see end)
-\renewcommand{\a}{\mathbf{a}}
-\renewcommand{\b}{\mathbf{b}}
-\newcommand{\e}{\mathbf{e}}
-\newcommand{\f}{\mathbf{f}}
-\newcommand{\g}{\mathbf{g}}
-\newcommand{\h}{\mathbf{h}}
-\renewcommand{\i}{\mathbf{i}}
-\renewcommand{\j}{\mathbf{j}}
-\renewcommand{\k}{\mathbf{k}}
-\renewcommand{\l}{\mathbf{l}}
-\newcommand{\m}{\mathbf{m}}
-\newcommand{\n}{\mathbf{n}}
-\renewcommand{\o}{\mathbf{o}}
-\newcommand{\p}{\mathbf{p}}
-\newcommand{\q}{\mathbf{q}}
-\renewcommand{\r}{\mathbf{r}}
-\newcommand{\s}{\mathbf{s}}
-\renewcommand{\t}{\mathbf{t}}
-\newcommand{\w}{\mathbf{w}}
-\newcommand{\x}{\mathbf{x}}
-\newcommand{\y}{\mathbf{y}}
-\newcommand{\z}{\mathbf{z}}
+\renewcommand{\a}{\symbf{a}}
+\renewcommand{\b}{\symbf{b}}
+\newcommand{\e}{\symbf{e}}
+\newcommand{\f}{\symbf{f}}
+\newcommand{\g}{\symbf{g}}
+\newcommand{\h}{\symbf{h}}
+\renewcommand{\i}{\symbf{i}}
+\renewcommand{\j}{\symbf{j}}
+\renewcommand{\k}{\symbf{k}}
+\renewcommand{\l}{\symbf{l}}
+\newcommand{\m}{\symbf{m}}
+\newcommand{\n}{\symbf{n}}
+\renewcommand{\o}{\symbf{o}}
+\newcommand{\p}{\symbf{p}}
+\newcommand{\q}{\symbf{q}}
+\renewcommand{\r}{\symbf{r}}
+\newcommand{\s}{\symbf{s}}
+\renewcommand{\t}{\symbf{t}}
+\newcommand{\w}{\symbf{w}}
+\newcommand{\x}{\symbf{x}}
+\newcommand{\y}{\symbf{y}}
+\newcommand{\z}{\symbf{z}}
 \let\origc\c
-\DeclareRobustCommand\c{\ifmmode\mathbf{c}\else\expandafter\origc\fi}
+\DeclareRobustCommand\c{\ifmmode\symbf{c}\else\expandafter\origc\fi}
 \let\origd\d
-\DeclareRobustCommand\d{\ifmmode\mathbf{d}\else\expandafter\origd\fi}
+\DeclareRobustCommand\d{\ifmmode\symbf{d}\else\expandafter\origd\fi}
 \let\origu\u
-\DeclareRobustCommand\u{\ifmmode\mathbf{u}\else\expandafter\origu\fi}
+\DeclareRobustCommand\u{\ifmmode\symbf{u}\else\expandafter\origu\fi}
 \let\origd\v
-\DeclareRobustCommand\v{\ifmmode\mathbf{v}\else\expandafter\origv\fi}
+\DeclareRobustCommand\v{\ifmmode\symbf{v}\else\expandafter\origv\fi}
 
 % Roman letters with hats
 \providecommand{\fhat}{\hat{f}}
@@ -64,27 +75,27 @@
 \providecommand{\that}{\hat{t}}
 \providecommand{\yhat}{\hat{y}}
 \providecommand{\bfhat}{\hat{\bf f}}
-\providecommand{\bshat}{\hat{\mathbf{s}}}
-\providecommand{\bthat}{\hat{\mathbf{t}}}
-\providecommand{\byhat}{\hat{\mathbf{y}}}
+\providecommand{\bshat}{\hat{\symbf{s}}}
+\providecommand{\bthat}{\hat{\symbf{t}}}
+\providecommand{\byhat}{\hat{\symbf{y}}}
 
 % Roman letters with subscripts
-\providecommand{\rj}{\mathbf{r}_{-j}}
-\providecommand{\xj}{\mathbf{x}_{-j}}
-\providecommand{\Xj}{\mathbf{X}_{-j}}
+\providecommand{\rj}{\symbf{r}_{-j}}
+\providecommand{\xj}{\symbf{x}_{-j}}
+\providecommand{\Xj}{\symbf{X}_{-j}}
 
 % Roman letters with tildes
 \providecommand{\rr}{\tilde{r}}
 \providecommand{\xx}{\tilde{x}}
 \providecommand{\yy}{\tilde{y}}
 \providecommand{\zz}{\tilde{z}}
-\providecommand{\brr}{\tilde{\mathbf{r}}}
-\providecommand{\bxx}{\tilde{\mathbf{x}}}
-\providecommand{\byy}{\tilde{\mathbf{y}}}
-\providecommand{\bzz}{\tilde{\mathbf{z}}}
-\providecommand{\XX}{\widetilde{\mathbf{X}}}
-\providecommand{\WW}{\widetilde{\mathbf{W}}}
-\providecommand{\ZZ}{\tilde{\mathbf{Z}}}
+\providecommand{\brr}{\tilde{\symbf{r}}}
+\providecommand{\bxx}{\tilde{\symbf{x}}}
+\providecommand{\byy}{\tilde{\symbf{y}}}
+\providecommand{\bzz}{\tilde{\symbf{z}}}
+\providecommand{\XX}{\widetilde{\symbf{X}}}
+\providecommand{\WW}{\widetilde{\symbf{W}}}
+\providecommand{\ZZ}{\tilde{\symbf{Z}}}
 
 % Script letters
 \providecommand{\cA}{\mathcal{A}}
@@ -110,69 +121,69 @@
 
 % Greek letters
 \providecommand{\ah}{\hat{\alpha}}
-\providecommand{\ba}{\boldsymbol{\alpha}}
-\providecommand{\bah}{\hat{\boldsymbol{\alpha}}}
-\providecommand{\bb}{\boldsymbol{\beta}}
+\providecommand{\ba}{\symbf{\alpha}}
+\providecommand{\bah}{\hat{\symbf{\alpha}}}
+\providecommand{\bb}{\symbf{\beta}}
 \providecommand{\bh}{\widehat{\beta}}
-\providecommand{\bbh}{\widehat{\boldsymbol{\beta}}}
-\providecommand{\bbs}{\boldsymbol{\beta}^*}
-\providecommand{\bd}{\boldsymbol{\delta}}
+\providecommand{\bbh}{\widehat{\symbf{\beta}}}
+\providecommand{\bbs}{\symbf{\beta}^*}
+\providecommand{\bd}{\symbf{\delta}}
 \renewcommand{\dh}{\hat{\delta}}
-\providecommand{\be}{\boldsymbol{\eta}}
+\providecommand{\be}{\symbf{\eta}}
 \providecommand{\eh}{\hat{\eta}}
-\providecommand{\beh}{\hat{\boldsymbol{\eta}}}
+\providecommand{\beh}{\hat{\symbf{\eta}}}
 \providecommand{\eps}{\epsilon}
 \providecommand{\veps}{\varepsilon}
-\providecommand{\bep}{\boldsymbol{\epsilon}}
-\providecommand{\bvep}{\boldsymbol{\varepsilon}}
+\providecommand{\bep}{\symbf{\epsilon}}
+\providecommand{\bvep}{\symbf{\varepsilon}}
 \providecommand{\eph}{\hat{\epsilon}}
-\providecommand{\beph}{\hat{\boldsymbol{\epsilon}}}
+\providecommand{\beph}{\hat{\symbf{\epsilon}}}
 \providecommand{\gam}{\gamma}
-\providecommand{\bg}{\boldsymbol{\gamma}}
-\providecommand{\bgh}{\hat{\boldsymbol{\gamma}}}
-\providecommand{\bG}{\boldsymbol{\Gamma}}
+\providecommand{\bg}{\symbf{\gamma}}
+\providecommand{\bgh}{\hat{\symbf{\gamma}}}
+\providecommand{\bG}{\symbf{\Gamma}}
 \providecommand{\gh}{\hat{\gamma}}
 \providecommand{\lam}{\lambda}
 \providecommand{\Lam}{\Lambda}
-\providecommand{\bl}{\boldsymbol{\lambda}}
+\providecommand{\bl}{\symbf{\lambda}}
 \providecommand{\lh}{\hat{\lambda}}
-\providecommand{\bL}{\boldsymbol{\Lambda}}
-\providecommand{\bm}{\boldsymbol{\mu}}
+\providecommand{\bL}{\symbf{\Lambda}}
+\providecommand{\symbf}{\symbf{\mu}}
 \providecommand{\mh}{\hat{\mu}}
-\providecommand{\bmh}{\hat{\boldsymbol{\mu}}}
-\providecommand{\bO}{\boldsymbol{\Omega}}
-\providecommand{\bp}{\boldsymbol{\pi}}
+\providecommand{\symbfh}{\hat{\symbf{\mu}}}
+\providecommand{\bO}{\symbf{\Omega}}
+\providecommand{\bp}{\symbf{\pi}}
 \providecommand{\ph}{\hat{\pi}}
-\providecommand{\bph}{\hat{\boldsymbol{\pi}}}
-\providecommand{\bpsi}{\boldsymbol{\psi}}
+\providecommand{\bph}{\hat{\symbf{\pi}}}
+\providecommand{\bpsi}{\symbf{\psi}}
 \providecommand{\sh}{\hat{\sigma}}
-\providecommand{\bS}{\boldsymbol{\Sigma}}
-\providecommand{\bSh}{\hat{\boldsymbol{\Sigma}}}
-\providecommand{\bt}{\boldsymbol{\theta}}
+\providecommand{\bS}{\symbf{\Sigma}}
+\providecommand{\bSh}{\hat{\symbf{\Sigma}}}
+\providecommand{\bt}{\symbf{\theta}}
 \renewcommand{\th}{\hat{\theta}}
 \providecommand{\ts}{\theta^*}
-\providecommand{\bth}{\hat{\boldsymbol{\theta}}}
-\providecommand{\bts}{\boldsymbol{\theta}^*}
-\providecommand{\bTs}{\boldsymbol{\Theta}^*}
-\providecommand{\bT}{\boldsymbol{\Theta}}
-\providecommand{\btau}{\boldsymbol{\tau}}
+\providecommand{\bth}{\hat{\symbf{\theta}}}
+\providecommand{\bts}{\symbf{\theta}^*}
+\providecommand{\bTs}{\symbf{\Theta}^*}
+\providecommand{\bT}{\symbf{\Theta}}
+\providecommand{\btau}{\symbf{\tau}}
 \providecommand{\tauh}{\hat{\tau}}
-\providecommand{\btauh}{\hat{\boldsymbol{\tau}}}
-\providecommand{\bbj}{\boldsymbol{\beta}_{-j}}
-\providecommand{\bbhj}{\widehat{\boldsymbol{\beta}}_{-j}}
+\providecommand{\btauh}{\hat{\symbf{\tau}}}
+\providecommand{\bbj}{\symbf{\beta}_{-j}}
+\providecommand{\bbhj}{\widehat{\symbf{\beta}}_{-j}}
 
 % Greek letters with tildes
 \providecommand{\betat}{\widetilde{\beta}}
-\providecommand{\bbjt}{\widetilde{\boldsymbol{\beta}}_{-j}}
-\providecommand{\bbt}{\widetilde{\boldsymbol{\beta}}}
+\providecommand{\bbjt}{\widetilde{\symbf{\beta}}_{-j}}
+\providecommand{\bbt}{\widetilde{\symbf{\beta}}}
 \providecommand{\etat}{\tilde{\eta}}
-\providecommand{\bet}{\widetilde{\boldsymbol{\eta}}}
+\providecommand{\bet}{\widetilde{\symbf{\eta}}}
 \providecommand{\lamt}{\tilde{\lambda}}
 \providecommand{\mt}{\tilde{\mu}}
-\providecommand{\bmt}{\tilde{\boldsymbol{\mu}}}
+\providecommand{\symbft}{\tilde{\symbf{\mu}}}
 \providecommand{\nut}{\tilde{\nu}}
 \providecommand{\thetat}{\tilde{\theta}}
-\providecommand{\btt}{\tilde{\boldsymbol{\theta}}}
+\providecommand{\btt}{\tilde{\symbf{\theta}}}
 
 % Operators
 \renewcommand{\Pr}{\mathbb{P}}
@@ -252,22 +263,14 @@
 \providecommand{\const}{\textrm{constant}}
 
 % Fisher/observed information
-\usepackage[scr=boondox]{mathalpha}
-\providecommand{\oI}{\boldsymbol{\mathcal{I}}}
-\providecommand{\oV}{\boldsymbol{\mathcal{V}}}
-\makeatletter
-\@ifpackagelater{mathalpha}{2021/01/01}{%
-\providecommand{\fI}{\mathbfscr{I}}
-\providecommand{\fV}{\mathbfscr{V}}
-}{%
-\providecommand{\fI}{\mathbscr{I}}
-\providecommand{\fV}{\mathbscr{V}}
-}
-\makeatother
+\providecommand{\oI}{\symbfcal{I}}
+\providecommand{\oV}{\symbfcal{V}}
+\providecommand{\fI}{\symbfscr{I}}
+\providecommand{\fV}{\symbfscr{V}}
 
 % Mathematical
-\providecommand{\one}{\mathbf{1}}
-\providecommand{\zero}{\mathbf{0}}
+\providecommand{\one}{\symbf{1}}
+\providecommand{\zero}{\symbf{0}}
 \providecommand{\intii}{\int_{-\infty}^{\infty}}
 \providecommand{\real}{\mathbb{R}}
 \providecommand{\dl}{d_-}
@@ -275,7 +278,6 @@
 \providecommand{\dom}{\textrm{dom}}
 \providecommand{\sign}{\textrm{sign}}
 \providecommand{\given}{\,\vert\,}
-\usepackage{mathtools}
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 \providecommand{\gl}{\prec}

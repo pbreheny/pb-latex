@@ -57,7 +57,7 @@ On Windows, the path depends on your TeX distribution. You'll have to search onl
 To test whether you've installed it correctly, run:
 
 ```bash
-kpsewhich breheny-notes.tex
+kpsewhich breheny-slides.tex
 ```
 
 If LaTeX finds it and prints a path, it’s installed correctly.

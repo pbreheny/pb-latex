@@ -1,5 +1,5 @@
 .manifest
 .snakemake
-examples/pandoc/*_files
+examples/quarto/*_files
 examples/latex/article
 examples/latex/talk

@@ -27,7 +27,8 @@ knitr:
 * Interesting point number 1
 * Interesting point number 2
 * Interesting point number 3
-  $$ \y = \X \bb + \veps $$
+  $$ \y = \X \bb + \bvep $$
+  $$ \oI = \oV^{-1} = \fI = \fV^{-1} $$
 
 ### Here's some code and a plot
 
