@@ -37,6 +37,10 @@
 % Lowercase roman letters (c, d, u, v have to be treated special; see end)
 \renewcommand{\a}{\mathbf{a}}
 \renewcommand{\b}{\mathbf{b}}
+\let\origc\c
+\DeclareRobustCommand\c{\ifmmode\mathbf{c}\else\expandafter\origc\fi}
+\let\origd\d
+\DeclareRobustCommand\d{\ifmmode\mathbf{d}\else\expandafter\origd\fi}
 \newcommand{\e}{\mathbf{e}}
 \newcommand{\f}{\mathbf{f}}
 \newcommand{\g}{\mathbf{g}}
@@ -53,18 +57,14 @@
 \renewcommand{\r}{\mathbf{r}}
 \newcommand{\s}{\mathbf{s}}
 \renewcommand{\t}{\mathbf{t}}
-\newcommand{\w}{\mathbf{w}}
-\newcommand{\x}{\mathbf{x}}
-\newcommand{\y}{\mathbf{y}}
-\newcommand{\z}{\mathbf{z}}
-\let\origc\c
-\DeclareRobustCommand\c{\ifmmode\mathbf{c}\else\expandafter\origc\fi}
-\let\origd\d
-\DeclareRobustCommand\d{\ifmmode\mathbf{d}\else\expandafter\origd\fi}
 \let\origu\u
 \DeclareRobustCommand\u{\ifmmode\mathbf{u}\else\expandafter\origu\fi}
 \let\origd\v
 \DeclareRobustCommand\v{\ifmmode\mathbf{v}\else\expandafter\origv\fi}
+\newcommand{\w}{\mathbf{w}}
+\newcommand{\x}{\mathbf{x}}
+\newcommand{\y}{\mathbf{y}}
+\newcommand{\z}{\mathbf{z}}
 
 % Roman letters with hats
 \providecommand{\fhat}{\hat{f}}
@@ -104,8 +104,14 @@
 \providecommand{\cG}{\mathcal{G}}
 \providecommand{\cH}{\mathcal{H}}
 \providecommand{\cI}{\mathcal{I}}
+\providecommand{\cJ}{\mathcal{J}}
+\providecommand{\cK}{\mathcal{K}}
+\providecommand{\cL}{\mathcal{L}}
 \providecommand{\cM}{\mathcal{M}}
 \providecommand{\cN}{\mathcal{N}}
+\providecommand{\cO}{\mathcal{O}}
+\providecommand{\cP}{\mathcal{P}}
+\providecommand{\cQ}{\mathcal{Q}}
 \providecommand{\cR}{\mathcal{R}}
 \providecommand{\cS}{\mathcal{S}}
 \providecommand{\cT}{\mathcal{T}}
@@ -182,38 +188,33 @@
 \providecommand{\thetat}{\tilde{\theta}}
 \providecommand{\btt}{\tilde{\bm{\theta}}}
 
-% Operators
-\renewcommand{\Pr}{\mathbb{P}}
-\providecommand{\pr}{\textrm{Pr}}
-\providecommand{\Ex}{\mathbb{E}}
-\providecommand{\ex}{\textrm{E}}
-\providecommand{\exh}{\widehat{\textrm{E}}}
-\providecommand{\Var}{\mathbb{V}}
-\providecommand{\var}{\textrm{Var}}
-\providecommand{\varh}{\widehat{\textrm{Var}}}
-\providecommand{\cov}{\textrm{Cov}}
-\providecommand{\cor}{\textrm{Cor}}
-\providecommand{\trace}{\textrm{tr}}
-\providecommand{\rank}{\textrm{rank}}
-\providecommand{\Prox}{\textrm{Prox}}
-\providecommand{\Norm}{\textrm{N}}
-\providecommand{\Gmma}{\textrm{Gamma}}
-\providecommand{\Beta}{\textrm{Beta}}
-\providecommand{\Pois}{\textrm{Pois}}
-\providecommand{\NBin}{\textrm{NegBin}}
-\providecommand{\Unif}{\textrm{Unif}}
-\providecommand{\Binom}{\textrm{Binom}}
-\providecommand{\Bern}{\textrm{Bern}}
-\providecommand{\Weib}{\textrm{Weibull}}
-\providecommand{\Scx}{\textrm{Scaled-}\chi^2}
-\providecommand{\Wish}{\textrm{Wishart}}
-\providecommand{\Multinom}{\textrm{Multinom}}
-\providecommand{\Dirch}{\textrm{Dir}}
-\providecommand{\Exp}{\textrm{Exp}}
-\providecommand{\diag}{\textrm{diag}}
-\providecommand{\Tr}{^{\scriptscriptstyle\top}}
+% Distributions
+\DeclareMathOperator{\Bern}{Bern}
+\DeclareMathOperator{\BetaDist}{Beta}
+\DeclareMathOperator{\Binom}{Binom}
+\DeclareMathOperator{\Dir}{Dir}
+\DeclareMathOperator{\Exp}{Exp}
+\DeclareMathOperator{\GammaDist}{Gamma}
+\DeclareMathOperator{\Multinom}{Multinom}
+\DeclareMathOperator{\NegBin}{NegBin}
+\DeclareMathOperator{\Normal}{N}
+\DeclareMathOperator{\Pois}{Pois}
+\newcommand{\Scx}{\operatorname{Scaled\text{-}\chi^2}}
+\DeclareMathOperator{\Unif}{Unif}
+\DeclareMathOperator{\Weibull}{Weibull}
+\DeclareMathOperator{\Wishart}{Wishart}
 
 % Statistical
+\renewcommand{\Pr}{\mathbb{P}}
+\providecommand{\pr}{\operatorname{Pr}}
+\providecommand{\Ex}{\mathbb{E}}
+\providecommand{\ex}{\operatorname{E}}
+\providecommand{\exh}{\widehat{\operatorname{E}}}
+\providecommand{\Var}{\mathbb{V}}
+\providecommand{\var}{\operatorname{Var}}
+\providecommand{\varh}{\widehat{\operatorname{Var}}}
+\DeclareMathOperator{\cov}{Cov}
+\DeclareMathOperator{\cor}{Cor}
 \renewcommand{\l}{\ell}
 \providecommand{\inP}{\overset{\textrm{P}}{\longrightarrow}}
 \providecommand{\inAS}{\overset{\textrm{as\,}}{\longrightarrow}}
@@ -273,6 +274,10 @@
 \makeatother
 
 % Mathematical
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\trace}{tr}
+\DeclareMathOperator{\Prox}{Prox}
 \providecommand{\one}{\mathbf{1}}
 \providecommand{\zero}{\mathbf{0}}
 \providecommand{\intii}{\int_{-\infty}^{\infty}}
@@ -281,7 +286,6 @@
 \providecommand{\dr}{d_+}
 \providecommand{\dom}{\textrm{dom}}
 \providecommand{\sign}{\textrm{sign}}
-\providecommand{\given}{\,\vert\,}
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
 \DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 \providecommand{\gl}{\prec}
@@ -291,14 +295,7 @@
 \DeclareMathOperator*{\argmin}{\arg\min}
 \DeclareMathOperator*{\argmax}{\arg\max}
 \providecommand{\pf}[2]{\frac{\partial #1}{\partial #2}}
-
-% Equations
-\providecommand{\al}[2]{\begin{align}\label{#1}#2\end{align}}
-\providecommand{\as}[1]{\begin{align*}#1\end{align*}}
-\providecommand{\als}[2]{\begin{align}\label{#1}\begin{split}#2\end{split}\end{align}}
-\providecommand{\tcirc}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}
+\providecommand{\Tr}{^{\scriptscriptstyle\top}}
 
 % Other
-\providecommand{\note}[1]{\textcolor{red}{#1}}
-
-\providecommand{\cvr}{\textrm{Cover}}
+\providecommand{\tcirc}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}
