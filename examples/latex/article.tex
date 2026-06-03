@@ -37,7 +37,7 @@ $$ \y = \X\bb + \bvep $$
   \begin{algorithmic}
     \Repeat
     \For{$j = 1, 2, \ldots, J$}
-      \State $\z_j = \X_j \Tr \r + \bb_j$
+      \State $\z_j = \X_j \tp \r + \bb_j$
       \State $\bb_j' \gets S\left(\z_j,\lam_j\right)$
       \State $\r' \gets \r - \X_j(\bb_j'-\bb_j)$
     \EndFor
