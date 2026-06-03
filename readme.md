@@ -14,6 +14,7 @@ In particular, `commands.tex` defines a ton of shortcuts that you may or may not
 * `examples`: Reproducible examples using these templates and frontmatter
   * `examples/latex`: These use LaTeX directly
   * `examples/quarto`: These use LaTeX indirectly, through Quarto
+* `showcase/showcase.pdf`: Illustrates all of the math macros/shortcuts. Note that this uses unicode fonts; some symbols will look slightly different if you have a different font system set up.
 
 ## Installation
 

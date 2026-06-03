@@ -73,12 +73,12 @@ def make_letter_macros(engine: str) -> str:
 
     lines.append("% Bold capital letters")
     for x in string.ascii_uppercase:
-        lines.append(rf"\renewcommand{{\{x}}}{{{bold_letter(x, engine)}}}")
+        lines.append(rf"\def\{x}{{{bold_letter(x, engine)}}}")
 
     lines.append("")
     lines.append("% Bold lowercase letters")
     for x in SAFE_LOWERCASE:
-        lines.append(rf"\renewcommand{{\{x}}}{{{bold_letter(x, engine)}}}")
+        lines.append(rf"\def\{x}{{{bold_letter(x, engine)}}}")
     for x in PROBLEM_LOWERCASE:
         lines.append(rf"\let\orig{x}\{x}")
         lines.append(rf"\DeclareRobustCommand\{x}{{\ifmmode{bold_letter(x, engine)}\else\expandafter\orig{x}\fi}}")
@@ -102,6 +102,8 @@ def make_letter_macros(engine: str) -> str:
     for x in TILDE_LETTERS:
         lines.append(rf"\providecommand{{\b{x}{x}}}{{\tilde{{{bold_letter(x, engine)}}}}}")
     for x in TILDE_LETTERS:
+        if x == "r":
+            continue
         X = x.upper()
         lines.append(rf"\providecommand{{\{X}{X}}}{{\tilde{{{bold_letter(X, engine)}}}}}")
   
@@ -123,7 +125,7 @@ def make_letter_macros(engine: str) -> str:
     lines.append("")
     lines.append("% Greek letters with hats")
     for x in sorted(GREEK.keys()):
-        lines.append(rf"\renewcommand{{\{x}h}}{{\hat{{\{GREEK[x]}}}}}")
+        lines.append(rf"\def\{x}h{{\hat{{\{GREEK[x]}}}}}")
 
     lines.append("")
     lines.append("% Bold Greek letters with hats")

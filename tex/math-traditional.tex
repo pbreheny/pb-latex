@@ -36,7 +36,7 @@
 \DeclareMathOperator{\Wishart}{Wishart}
 
 % Statistical
-\renewcommand{\Pr}{\mathbb{P}}
+\def\Pr{\mathbb{P}}
 \providecommand{\pr}{\operatorname{Pr}}
 \providecommand{\Ex}{\mathbb{E}}
 \providecommand{\ex}{\operatorname{E}}
@@ -46,7 +46,6 @@
 \providecommand{\varh}{\widehat{\operatorname{Var}}}
 \DeclareMathOperator{\cov}{Cov}
 \DeclareMathOperator{\cor}{Cor}
-\renewcommand{\l}{\ell}
 \providecommand{\inP}{\overset{\textrm{P}}{\longrightarrow}}
 \providecommand{\inAS}{\overset{\textrm{as\,}}{\longrightarrow}}
 \providecommand{\inD}{\overset{\textrm{d}}{\longrightarrow}}
@@ -115,58 +114,59 @@
 
 % Other
 \providecommand{\tcirc}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}
+\providecommand{\dd}{\,\textrm{d}}
 
 % Bold capital letters
-\renewcommand{\A}{\mathbf{A}}
-\renewcommand{\B}{\mathbf{B}}
-\renewcommand{\C}{\mathbf{C}}
-\renewcommand{\D}{\mathbf{D}}
-\renewcommand{\E}{\mathbf{E}}
-\renewcommand{\F}{\mathbf{F}}
-\renewcommand{\G}{\mathbf{G}}
-\renewcommand{\H}{\mathbf{H}}
-\renewcommand{\I}{\mathbf{I}}
-\renewcommand{\J}{\mathbf{J}}
-\renewcommand{\K}{\mathbf{K}}
-\renewcommand{\L}{\mathbf{L}}
-\renewcommand{\M}{\mathbf{M}}
-\renewcommand{\N}{\mathbf{N}}
-\renewcommand{\O}{\mathbf{O}}
-\renewcommand{\P}{\mathbf{P}}
-\renewcommand{\Q}{\mathbf{Q}}
-\renewcommand{\R}{\mathbf{R}}
-\renewcommand{\S}{\mathbf{S}}
-\renewcommand{\T}{\mathbf{T}}
-\renewcommand{\U}{\mathbf{U}}
-\renewcommand{\V}{\mathbf{V}}
-\renewcommand{\W}{\mathbf{W}}
-\renewcommand{\X}{\mathbf{X}}
-\renewcommand{\Y}{\mathbf{Y}}
-\renewcommand{\Z}{\mathbf{Z}}
+\def\A{\mathbf{A}}
+\def\B{\mathbf{B}}
+\def\C{\mathbf{C}}
+\def\D{\mathbf{D}}
+\def\E{\mathbf{E}}
+\def\F{\mathbf{F}}
+\def\G{\mathbf{G}}
+\def\H{\mathbf{H}}
+\def\I{\mathbf{I}}
+\def\J{\mathbf{J}}
+\def\K{\mathbf{K}}
+\def\L{\mathbf{L}}
+\def\M{\mathbf{M}}
+\def\N{\mathbf{N}}
+\def\O{\mathbf{O}}
+\def\P{\mathbf{P}}
+\def\Q{\mathbf{Q}}
+\def\R{\mathbf{R}}
+\def\S{\mathbf{S}}
+\def\T{\mathbf{T}}
+\def\U{\mathbf{U}}
+\def\V{\mathbf{V}}
+\def\W{\mathbf{W}}
+\def\X{\mathbf{X}}
+\def\Y{\mathbf{Y}}
+\def\Z{\mathbf{Z}}
 
 % Bold lowercase letters
-\renewcommand{\a}{\mathbf{a}}
-\renewcommand{\b}{\mathbf{b}}
-\renewcommand{\e}{\mathbf{e}}
-\renewcommand{\f}{\mathbf{f}}
-\renewcommand{\g}{\mathbf{g}}
-\renewcommand{\h}{\mathbf{h}}
-\renewcommand{\i}{\mathbf{i}}
-\renewcommand{\j}{\mathbf{j}}
-\renewcommand{\k}{\mathbf{k}}
-\renewcommand{\l}{\mathbf{l}}
-\renewcommand{\m}{\mathbf{m}}
-\renewcommand{\n}{\mathbf{n}}
-\renewcommand{\o}{\mathbf{o}}
-\renewcommand{\p}{\mathbf{p}}
-\renewcommand{\q}{\mathbf{q}}
-\renewcommand{\r}{\mathbf{r}}
-\renewcommand{\s}{\mathbf{s}}
-\renewcommand{\t}{\mathbf{t}}
-\renewcommand{\w}{\mathbf{w}}
-\renewcommand{\x}{\mathbf{x}}
-\renewcommand{\y}{\mathbf{y}}
-\renewcommand{\z}{\mathbf{z}}
+\def\a{\mathbf{a}}
+\def\b{\mathbf{b}}
+\def\e{\mathbf{e}}
+\def\f{\mathbf{f}}
+\def\g{\mathbf{g}}
+\def\h{\mathbf{h}}
+\def\i{\mathbf{i}}
+\def\j{\mathbf{j}}
+\def\k{\mathbf{k}}
+\def\l{\mathbf{l}}
+\def\m{\mathbf{m}}
+\def\n{\mathbf{n}}
+\def\o{\mathbf{o}}
+\def\p{\mathbf{p}}
+\def\q{\mathbf{q}}
+\def\r{\mathbf{r}}
+\def\s{\mathbf{s}}
+\def\t{\mathbf{t}}
+\def\w{\mathbf{w}}
+\def\x{\mathbf{x}}
+\def\y{\mathbf{y}}
+\def\z{\mathbf{z}}
 \let\origc\c
 \DeclareRobustCommand\c{\ifmmode\mathbf{c}\else\expandafter\origc\fi}
 \let\origd\d
@@ -202,7 +202,6 @@
 \providecommand{\bxx}{\tilde{\mathbf{x}}}
 \providecommand{\byy}{\tilde{\mathbf{y}}}
 \providecommand{\bzz}{\tilde{\mathbf{z}}}
-\providecommand{\RR}{\tilde{\mathbf{R}}}
 \providecommand{\WW}{\tilde{\mathbf{W}}}
 \providecommand{\XX}{\tilde{\mathbf{X}}}
 \providecommand{\YY}{\tilde{\mathbf{Y}}}
@@ -266,26 +265,26 @@
 \providecommand{\bvep}{\bm{\varepsilon}}
 
 % Greek letters with hats
-\renewcommand{\Gh}{\hat{\Gamma}}
-\renewcommand{\Lh}{\hat{\Lambda}}
-\renewcommand{\Oh}{\hat{\Omega}}
-\renewcommand{\Sh}{\hat{\Sigma}}
-\renewcommand{\Th}{\hat{\Theta}}
-\renewcommand{\ah}{\hat{\alpha}}
-\renewcommand{\bh}{\hat{\beta}}
-\renewcommand{\dh}{\hat{\delta}}
-\renewcommand{\eh}{\hat{\eta}}
-\renewcommand{\epsh}{\hat{\epsilon}}
-\renewcommand{\gh}{\hat{\gamma}}
-\renewcommand{\lh}{\hat{\lambda}}
-\renewcommand{\mh}{\hat{\mu}}
-\renewcommand{\nh}{\hat{\nu}}
-\renewcommand{\ph}{\hat{\pi}}
-\renewcommand{\psih}{\hat{\psi}}
-\renewcommand{\sh}{\hat{\sigma}}
-\renewcommand{\th}{\hat{\theta}}
-\renewcommand{\tauh}{\hat{\tau}}
-\renewcommand{\veph}{\hat{\varepsilon}}
+\def\Gh{\hat{\Gamma}}
+\def\Lh{\hat{\Lambda}}
+\def\Oh{\hat{\Omega}}
+\def\Sh{\hat{\Sigma}}
+\def\Th{\hat{\Theta}}
+\def\ah{\hat{\alpha}}
+\def\bh{\hat{\beta}}
+\def\dh{\hat{\delta}}
+\def\eh{\hat{\eta}}
+\def\epsh{\hat{\epsilon}}
+\def\gh{\hat{\gamma}}
+\def\lh{\hat{\lambda}}
+\def\mh{\hat{\mu}}
+\def\nh{\hat{\nu}}
+\def\ph{\hat{\pi}}
+\def\psih{\hat{\psi}}
+\def\sh{\hat{\sigma}}
+\def\th{\hat{\theta}}
+\def\tauh{\hat{\tau}}
+\def\veph{\hat{\varepsilon}}
 
 % Bold Greek letters with hats
 \providecommand{\bGh}{\hat{\bm{\Gamma}}}

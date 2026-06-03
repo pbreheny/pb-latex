@@ -3,3 +3,5 @@
 examples/quarto/*_files
 examples/latex/article
 examples/latex/talk
+showcase/*
+!showcase/showcase.pdf

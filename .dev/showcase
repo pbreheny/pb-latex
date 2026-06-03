@@ -1,0 +1,157 @@
+#!/usr/bin/env python3
+
+import re
+from pathlib import Path
+
+input_path = Path("../tex/math-unicode.tex")
+output_path = Path("../showcase/showcase.tex")
+title = "Showcase: Math symbols and macros"
+
+COMMAND_PATTERNS = [
+    re.compile(
+        r"""^\\(?P<kind>providecommand|renewcommand)\{\\(?P<name>[A-Za-z]+)\}"""
+    ),
+    re.compile(
+        r"""^\\(?P<kind>def)\\(?P<name>[A-Za-z]+)"""
+    ),
+    re.compile(
+        r"""^\\DeclareMathOperator\*?\{\\(?P<name>[A-Za-z]+)\}\{(?P<text>.*)\}"""
+    )
+]
+
+SKIP_SECTIONS = {
+    "Other",
+    "Packages and fonts"
+}
+
+SHOWCASE_OVERRIDES = {
+    "Bern": r"\Bern(\pi)",
+    "BetaDist": r"\BetaDist(\alpha, \beta)",
+    "Binom": r"\Binom(n, \pi)",
+    "Dir": r"\Dir(\ba)",
+    "Exp": r"\Exp(\lam)",
+    "GammaDist": r"\GammaDist(\alpha, \beta)",
+    "Multinom": r"\Multinom(n, \bp)",
+    "NegBin": r"\NegBin(r, \pi)",
+    "Normal": r"\Normal(\bm, \bS)",
+    "Pois": r"\Pois(\lam)",
+    "Unif": r"\Unif(a, b)",
+    "Weibull": r"\Weibull(\lam, \alpha)",
+    "Wishart": r"\Wishart_\nu(\S)",
+    "argmin": r"\argmin_x f(x)",
+    "argmax": r"\argmax_x f(x)",
+    "diag": r"\diag \bS",
+    "dom": r"\dom f",
+    "prox": r"\prox_f (\x)",
+    "rank": r"\rank \A",
+    "sign": r"\sign \beta",
+    "trace": r"\trace \bS",
+    "intii": r"\intii f(x) \dd x",
+    "pf": r"\pf{f}{x}",
+    "tp": r"\X \tp \y",
+}
+
+
+def latex_escape_texttt(s: str) -> str:
+    """Escape text for use inside \\texttt{...}."""
+    return (
+        s.replace("\\", r"\textbackslash{}")
+         .replace("{", r"\{")
+         .replace("}", r"\}")
+         .replace("_", r"\_")
+         .replace("^", r"\^{}")
+         .replace("&", r"\&")
+         .replace("%", r"\%")
+         .replace("#", r"\#")
+         .replace("$", r"\$")
+    )
+
+
+def parse_macros(path: Path):
+    skip_current_section = False
+
+    for line in path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+
+        if not stripped:
+            continue
+
+        if stripped.startswith("%") and not stripped.startswith("% This file"):
+            heading = stripped.lstrip("%").strip()
+            skip_current_section = heading in SKIP_SECTIONS
+
+            if heading and not skip_current_section:
+                yield ("section", heading)
+            continue
+
+        if skip_current_section:
+            continue
+
+        for pattern in COMMAND_PATTERNS:
+            match = pattern.match(stripped)
+            if match:
+                name = match.group("name")
+                yield ("command", name)
+                break
+
+
+def display_code(name: str) -> str:
+    example = SHOWCASE_OVERRIDES.get(name, rf"\{name}")
+    return rf"\verb|{example}|"
+
+def rendered_math(name: str) -> str:
+    example = SHOWCASE_OVERRIDES.get(name, rf"\{name}")
+    return rf"${example}$"
+
+
+def make_document(input_path: Path, title: str) -> str:
+    rows = []
+    current_section_open = False
+
+    for item in parse_macros(input_path):
+        if item[0] == "section":
+            if current_section_open:
+                rows.append(r"\end{longtable}")
+                rows.append("")
+            heading = item[1]
+            rows.append(rf"\section*{{{heading}}}")
+            rows.append(r"\begin{longtable}{@{}ll@{}}")
+            rows.append(r"\textbf{Command} & \textbf{Output} \\")
+            rows.append(r"\midrule")
+            current_section_open = True
+
+        elif item[0] == "command":
+            _, name = item
+            rows.append(
+                rf"{display_code(name)} & {rendered_math(name)} \\"
+            )
+
+    if current_section_open:
+        rows.append(r"\end{longtable}")
+
+    body = "\n".join(rows)
+
+    return rf"""\documentclass[11pt]{{article}}
+
+\usepackage[margin=0.8in]{{geometry}}
+\usepackage{{booktabs}}
+\usepackage{{longtable}}
+\usepackage{{array}}
+
+\input{{{input_path.as_posix()}}}
+
+\title{{{title}}}
+\date{{}}
+
+\begin{{document}}
+\maketitle
+
+{body}
+
+\end{{document}}
+"""
+
+
+# Main
+output_path.write_text(make_document(input_path, title), encoding="utf-8")
+print(f"Wrote {output_path}")
