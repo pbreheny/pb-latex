@@ -1,0 +1,182 @@
+#!/usr/bin/env python3
+
+from pathlib import Path
+import string
+
+ROOT = Path(__file__).resolve().parents[1]
+
+SRC = ROOT / ".dev"
+OUT = ROOT / "tex"
+
+PROBLEM_LOWERCASE = ["c", "d", "u", "v"]
+SAFE_LOWERCASE = [x for x in string.ascii_lowercase if x not in PROBLEM_LOWERCASE]
+HAT_LETTERS = ["f", "s", "t", "y"]
+SUBSCRIPT_LETTERS = ["r", "x", "X"]
+TILDE_LETTERS = ["r", "w", "x", "y", "z"]
+
+GREEK = {
+    "a": "alpha",
+    "b": "beta",
+    "g": "gamma",
+    "d": "delta",
+    "eps": "epsilon",
+    "vep": "varepsilon",
+    "e": "eta",
+    "t": "theta",
+    "l": "lambda",
+    "m": "mu",
+    "n": "nu",
+    "p": "pi",
+    "s": "sigma",
+    "tau": "tau",
+    "psi": "psi",
+    "G": "Gamma",
+    "L": "Lambda",
+    "O": "Omega",
+    "S": "Sigma",
+    "T": "Theta",
+}
+GREEK_ABBREVIATIONS = {
+    "eps": "epsilon",
+    "vep": "varepsilon",
+    "gam": "gamma",
+    "lam": "lambda",
+    "Lam": "Lambda"
+}
+GA_REV = {v: k for k, v in GREEK_ABBREVIATIONS.items()}
+GREEK_STAR = ["b", "t", "T"]
+GREEK_TILDE = ["b", "e", "l", "m", "n", "t"]
+
+
+def read(path: Path) -> str:
+    return path.read_text(encoding="utf-8").rstrip() + "\n"
+
+
+def bold_letter(letter: str, engine: str) -> str:
+    if engine == "traditional":
+        return rf"\mathbf{{{letter}}}"
+    if engine == "unicode":
+        return rf"\symbf{{{letter}}}"
+    raise ValueError(engine)
+
+
+def bold_symbol(symbol: str, engine: str) -> str:
+    if engine == "traditional":
+        return rf"\bm{{\{symbol}}}"
+    if engine == "unicode":
+        return rf"\symbf{{\{symbol}}}"
+    raise ValueError(engine)
+
+
+def make_letter_macros(engine: str) -> str:
+    lines = []
+
+    lines.append("% Bold capital letters")
+    for x in string.ascii_uppercase:
+        lines.append(rf"\renewcommand{{\{x}}}{{{bold_letter(x, engine)}}}")
+
+    lines.append("")
+    lines.append("% Bold lowercase letters")
+    for x in SAFE_LOWERCASE:
+        lines.append(rf"\renewcommand{{\{x}}}{{{bold_letter(x, engine)}}}")
+    for x in PROBLEM_LOWERCASE:
+        lines.append(rf"\let\orig{x}\{x}")
+        lines.append(rf"\DeclareRobustCommand\{x}{{\ifmmode{bold_letter(x, engine)}\else\expandafter\orig{x}\fi}}")
+
+    lines.append("")
+    lines.append("% Letters with hats")
+    for x in HAT_LETTERS:
+        lines.append(rf"\providecommand{{\{x}hat}}{{\hat{{{x}}}}}")
+    for x in HAT_LETTERS:
+        lines.append(rf"\providecommand{{\b{x}hat}}{{\hat{{{bold_letter(x, engine)}}}}}")
+  
+    lines.append("")
+    lines.append("% Letters with subscripts")
+    for x in SUBSCRIPT_LETTERS:
+        lines.append(rf"\providecommand{{\{x}j}}{{{bold_letter(x, engine)}_{{-j}}}}")
+
+    lines.append("")
+    lines.append("% Letters with tildes")
+    for x in TILDE_LETTERS:
+        lines.append(rf"\providecommand{{\{x}{x}}}{{\tilde{{{x}}}}}")
+    for x in TILDE_LETTERS:
+        lines.append(rf"\providecommand{{\b{x}{x}}}{{\tilde{{{bold_letter(x, engine)}}}}}")
+    for x in TILDE_LETTERS:
+        X = x.upper()
+        lines.append(rf"\providecommand{{\{X}{X}}}{{\tilde{{{bold_letter(X, engine)}}}}}")
+  
+    lines.append("")
+    lines.append("% Calligraphic capital letters")
+    for x in string.ascii_uppercase:
+        lines.append(rf"\providecommand{{\c{x}}}{{\mathcal{{{x}}}}}")
+
+    lines.append("")
+    lines.append("% Greek letters (shortcuts)")
+    for x in sorted(GREEK_ABBREVIATIONS.keys()):
+        lines.append(rf"\providecommand{{\{x}}}{{\{GREEK_ABBREVIATIONS[x]}}}")
+
+    lines.append("")
+    lines.append("% Bold Greek letters")
+    for x in sorted(GREEK.keys()):
+        lines.append(rf"\providecommand{{\b{x}}}{{{bold_symbol(GREEK[x], engine)}}}")
+  
+    lines.append("")
+    lines.append("% Greek letters with hats")
+    for x in sorted(GREEK.keys()):
+        lines.append(rf"\renewcommand{{\{x}h}}{{\hat{{\{GREEK[x]}}}}}")
+
+    lines.append("")
+    lines.append("% Bold Greek letters with hats")
+    for x in sorted(GREEK.keys()):
+        lines.append(rf"\providecommand{{\b{x}h}}{{\hat{{{bold_symbol(GREEK[x], engine)}}}}}")
+
+    lines.append("")
+    lines.append("% Greek letters with stars")
+    lines.append(r"\providecommand{\ts}{\theta^{*}}")
+    for x in GREEK_STAR:
+        lines.append(rf"\providecommand{{\b{x}s}}{{{bold_symbol(GREEK[x], engine)}^{{*}}}}")
+
+    lines.append("")
+    lines.append("% Greek letters with subscripts")
+    lines.append(rf"\providecommand{{\bbj}}{{{bold_symbol("beta", engine)}_{{-j}}}}")
+    lines.append(rf"\providecommand{{\bbhj}}{{\hat{{{bold_symbol("beta", engine)}}}_{{-j}}}}")
+    lines.append(rf"\providecommand{{\bbtj}}{{\tilde{{{bold_symbol("beta", engine)}}}_{{-j}}}}")
+
+    lines.append("")
+    lines.append("% Greek letters with tildes")
+    for letter in GREEK_TILDE:
+        if GREEK[letter] in GREEK_ABBREVIATIONS.values():
+            x = GA_REV[GREEK[letter]]
+        else:
+            x = GREEK[letter]
+        lines.append(rf"\providecommand{{\{x}t}}{{\tilde{{\{GREEK[letter]}}}}}")
+
+    lines.append("")
+    lines.append("% Bold Greek letters with tildes")
+    for x in GREEK_TILDE:
+        lines.append(rf"\providecommand{{\b{x}t}}{{\tilde{{{bold_symbol(GREEK[x], engine)}}}}}")
+
+    return "\n".join(lines) + "\n"
+
+
+def build(engine: str) -> str:
+    specific = read(SRC / f"{engine}.tex")
+    core = read(SRC / "core.tex")
+    letters = make_letter_macros(engine)
+
+    return "\n".join([
+        specific.rstrip(),
+        "",
+        core.rstrip(),
+        "",
+        letters.rstrip(),
+        ""
+    ])
+
+
+OUT.mkdir(exist_ok=True)
+
+for engine in ["traditional", "unicode"]:
+    target = OUT / f"math-{engine}.tex"
+    target.write_text(build(engine), encoding="utf-8")
+    print(f"Wrote {target}")
