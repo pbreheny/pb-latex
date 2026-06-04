@@ -71,6 +71,11 @@ def bold_symbol(symbol: str, engine: str) -> str:
 def make_letter_macros(engine: str) -> str:
     lines = []
 
+    lines.append("% Bold numbers")
+    lines.append(rf"\providecommand{{\zero}}{{{bold_letter("0", engine)}}}")
+    lines.append(rf"\providecommand{{\one}}{{{bold_letter("1", engine)}}}")
+
+    lines.append("")
     lines.append("% Bold capital letters")
     for x in string.ascii_uppercase:
         lines.append(rf"\def\{x}{{{bold_letter(x, engine)}}}")

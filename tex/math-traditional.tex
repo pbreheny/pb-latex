@@ -9,15 +9,8 @@
 % Fisher/observed information
 \providecommand{\oI}{\bm{\mathcal{I}}}
 \providecommand{\oV}{\bm{\mathcal{V}}}
-\makeatletter
-\@ifpackagelater{mathalpha}{2021/01/01}{%
 \providecommand{\fI}{\mathbfscr{I}}
 \providecommand{\fV}{\mathbfscr{V}}
-}{%
-\providecommand{\fI}{\mathbscr{I}}
-\providecommand{\fV}{\mathbscr{V}}
-}
-\makeatother
 
 % Distributions
 \DeclareMathOperator{\Bern}{Bern}
@@ -115,6 +108,10 @@
 % Other
 \providecommand{\tcirc}[1]{\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {#1}}}}
 \providecommand{\dd}{\,\textrm{d}}
+
+% Bold numbers
+\providecommand{\zero}{\mathbf{0}}
+\providecommand{\one}{\mathbf{1}}
 
 % Bold capital letters
 \def\A{\mathbf{A}}
