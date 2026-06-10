@@ -164,14 +164,14 @@
 \def\x{\mathbf{x}}
 \def\y{\mathbf{y}}
 \def\z{\mathbf{z}}
-\let\origc\c
-\DeclareRobustCommand\c{\ifmmode\mathbf{c}\else\expandafter\origc\fi}
-\let\origd\d
-\DeclareRobustCommand\d{\ifmmode\mathbf{d}\else\expandafter\origd\fi}
-\let\origu\u
-\DeclareRobustCommand\u{\ifmmode\mathbf{u}\else\expandafter\origu\fi}
-\let\origv\v
-\DeclareRobustCommand\v{\ifmmode\mathbf{v}\else\expandafter\origv\fi}
+\let\origc\c                                                          % chktex 14
+\DeclareRobustCommand\c{\ifmmode\mathbf{c}\else\expandafter\origc\fi} % chktex 41
+\let\origd\d                                                          % chktex 14
+\DeclareRobustCommand\d{\ifmmode\mathbf{d}\else\expandafter\origd\fi} % chktex 41
+\let\origu\u                                                          % chktex 14
+\DeclareRobustCommand\u{\ifmmode\mathbf{u}\else\expandafter\origu\fi} % chktex 41
+\let\origv\v                                                          % chktex 14
+\DeclareRobustCommand\v{\ifmmode\mathbf{v}\else\expandafter\origv\fi} % chktex 41
 
 % Letters with hats
 \providecommand{\fhat}{\hat{f}}

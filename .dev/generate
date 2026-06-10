@@ -85,8 +85,12 @@ def make_letter_macros(engine: str) -> str:
     for x in SAFE_LOWERCASE:
         lines.append(rf"\def\{x}{{{bold_letter(x, engine)}}}")
     for x in PROBLEM_LOWERCASE:
-        lines.append(rf"\let\orig{x}\{x}")
-        lines.append(rf"\DeclareRobustCommand\{x}{{\ifmmode{bold_letter(x, engine)}\else\expandafter\orig{x}\fi}}")
+        if engine == "traditional":
+            spaces = "                                                          "
+        else:
+            spaces = "                                                         "
+        lines.append(rf"\let\orig{x}\{x}{spaces}% chktex 14")
+        lines.append(rf"\DeclareRobustCommand\{x}{{\ifmmode{bold_letter(x, engine)}\else\expandafter\orig{x}\fi}} % chktex 41")
 
     lines.append("")
     lines.append("% Letters with hats")
