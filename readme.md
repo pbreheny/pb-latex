@@ -8,7 +8,7 @@ In particular, `commands.tex` defines a ton of shortcuts that you may or may not
 
 ## Organization
 
-* `bin`: This includes a script called `singletex` that is useful for taking a LaTeX project in which the `.tex` code is split across multiple files and unifying it into a single `.tex` file for the sake of portability. This is very useful when submitting to arXiV or journals.
+* `bst`: This includes a natbib-compatible bibliography style file called `smallcap.bst`.
 * `tex`: Files to include in LaTeX preamble
 * `templates`: If you use Quarto or Pandoc, these set up the preamble for you.
 * `examples`: Reproducible examples using these templates and frontmatter
@@ -41,6 +41,8 @@ A quick Linux install script is:
 mkdir -p ~/texmf/tex/latex
 cd ~/texmf/tex/latex
 git clone git@github.com:/pbreheny/pb-latex.git
+mkdir -p ~/texmf/bibtex/bst
+cp pb-latex/bst/smallcap.bst ~/texmf/bibtex/bst
 ```
 
 If you're on a Mac:
@@ -49,6 +51,8 @@ If you're on a Mac:
 mkdir -p ~/Library/texmf/tex/latex
 cd ~/Library/texmf/tex/latex
 git clone git@github.com:/pbreheny/pb-latex.git
+mkdir -p ~/Library/texmf/bibtex/bst
+cp pb-latex/bst/smallcap.bst ~/Library/texmf/bibtex/bst
 ```
 
 On Windows, the path depends on your TeX distribution. You'll have to search online for instructions relevant to your distribution.

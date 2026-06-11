@@ -1,5 +1,9 @@
 \documentclass[11pt]{article}
 
+\input{breheny-article}
+\input{breheny-code}
+\input{breheny-algorithm}
+
 % Choose one:
 \input{mar-compact} % Compact margins
 % \input{mar-1}     % Wider margins
@@ -7,10 +11,6 @@
 % Choose one:
 \input{math-traditional} % Traditional LaTeX math fonts (most portable)
 % \input{math-unicode}   % Modern Unicode math fonts (XeLaTeX/LuaLaTeX)
-
-\input{breheny-article}
-\input{breheny-code}
-\input{breheny-algorithm}
 
 % Include additional packages / define additional commands here
 
@@ -44,5 +44,10 @@ $$ \y = \X\bb + \bvep $$
     \Until convergence
   \end{algorithmic}
 \end{algorithm}
+
+\citet{Tibshirani1996} introduced the lasso.
+
+\bibliographystyle{smallcap}
+\bibliography{ref}
 
 \end{document}

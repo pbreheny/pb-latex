@@ -28,3 +28,5 @@ $$ \y = \X\bb + \bvep $$
 rnorm(3)
 curve(sin, -pi, pi, bty = "n", las = 1)
 ```
+
+\citet{Tibshirani1996} introduced the lasso.
