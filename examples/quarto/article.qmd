@@ -2,6 +2,7 @@
 title: "My article"
 latex-auto-install: false
 margins: compact
+bib: true
 format:
   pdf:
     template: ../../templates/article.tex
