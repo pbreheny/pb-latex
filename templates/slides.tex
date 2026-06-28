@@ -19,16 +19,16 @@ $for(header)$
 $header$
 $endfor$
 
-% I don't like Quarto's default spacing
+% Beamer-specific adjustments
 \setlength{\parskip}{0.5ex}
+\makeatletter
+\renewcommand{\tagform@}[1]{}
+\makeatother
 
 \title$if(short-title)$[$short-title$]$endif${$title$}
 
 $if(author)$
 \author{$for(author)$$author$$sep$ \and $endfor$}
-$endif$
-$if(affiliation)$
-\newcommand{\affiliation}{$affiliation$}
 $endif$
 
 $if(affiliation)$
