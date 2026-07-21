@@ -27,21 +27,18 @@
 \usepackage{natbib}
 \usepackage[shortlabels]{enumitem}
 
-% Abstract
-\renewcommand{\abstract}[1]{
-  \centerline{
-    \begin{minipage}{0.7\linewidth}
-      \hrule
-      \vskip 0.1in
-      \begin{center}
-        {\bf Abstract}
-      \end{center}
-      #1
-      \vskip 0.1in
-      \hrule
-    \end{minipage}}
-  \vskip 0.3in}
-
+% Define abstract environment
+\renewenvironment{abstract}
+{%
+  \begin{center}
+    \begin{minipage}{0.8\linewidth}
+      \textbf{Abstract.}
+    }
+    {%
+    \end{minipage}
+  \end{center}
+  \smallskip
+}
 % Easy switch between left and right equation numbering
 \makeatletter
 \newcommand{\leqnomode}{\tagsleft@true\let\veqno\@@leqno}

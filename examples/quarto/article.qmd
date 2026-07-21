@@ -12,7 +12,9 @@ knitr:
     echo: true
 ---
 
-\abstract{My abstract}
+\begin{abstract}
+My abstract
+\end{abstract}
 
 # Introduction
 

@@ -22,7 +22,9 @@
 
 \maketitle
 
-\abstract{My abstract}
+\begin{abstract}
+  My abstract
+\end{abstract}
 
 Text goes here.
 
@@ -33,13 +35,13 @@ $$ \y = \X\bb + \bvep $$
 \end{code}
 
 \begin{algorithm}
-\caption{\label{alg:gd-lasso} Group descent algorithm for the group lasso}
+  \caption{\label{alg:gd-lasso} Group descent algorithm for the group lasso}
   \begin{algorithmic}
     \Repeat
     \For{$j = 1, 2, \ldots, J$}
-      \State $\z_j = \X_j \tp \r + \bb_j$
-      \State $\bb_j' \gets S\left(\z_j,\lam_j\right)$
-      \State $\r' \gets \r - \X_j(\bb_j'-\bb_j)$
+    \State $\z_j = \X_j \tp \r + \bb_j$
+    \State $\bb_j' \gets S\left(\z_j,\lam_j\right)$
+    \State $\r' \gets \r - \X_j(\bb_j'-\bb_j)$
     \EndFor
     \Until convergence
   \end{algorithmic}

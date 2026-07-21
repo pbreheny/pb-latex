@@ -3,15 +3,16 @@
 
 % Colors, links, highlighting
 \definecolor{steelblue}{HTML}{4682B4}
+\definecolor{azure}{HTML}{0072B2}
 \definecolor{darkgray}{rgb}{.33,.33,.33}
 \definecolor{goodcolor}{HTML}{2E7D32}
 \definecolor{warncolor}{HTML}{E69F00}
-\newcommand{\hl}[1]{\textcolor{steelblue}{#1}}
+\newcommand{\hl}[1]{\textcolor{azure}{#1}}
 \hypersetup{
   colorlinks=true,
   linkcolor=white,
   citecolor=black,
-  urlcolor=steelblue
+  urlcolor=azure
 }
 
 % Beamer theme
@@ -30,7 +31,7 @@
 \setbeamertemplate{navigation symbols}{}
 
 % Itemize/enumerate
-\setbeamertemplate{itemize item}{\raise.1ex\hbox{\color{steelblue}$\bullet$}} 
+\setbeamertemplate{itemize item}{\raise.1ex\hbox{\color{steelblue}$\bullet$}}
 \setbeamertemplate{itemize subitem}{\raise.1ex\hbox{\color{steelblue}$\circ$}}
 \setbeamertemplate{itemize subsubitem}{\scriptsize\raise.1ex\hbox{\color{steelblue}$\bullet$}}
 \setbeamertemplate{enumerate items}[default]
@@ -48,19 +49,19 @@
   \hbox{%
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1ex]{author in head/foot}%
       \usebeamerfont{title in head/foot}\hspace*{2ex}\footera\hfill
-      \footerb\hspace*{2ex} 
+      \footerb\hspace*{2ex}
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1ex]{title in head/foot}%
-        \usebeamerfont{title in head/foot}\hspace*{2ex}\footerc{}\hfill
-        \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+      \usebeamerfont{title in head/foot}\hspace*{2ex}\footerc{}\hfill
+      \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
     \end{beamercolorbox}}%
-    \vskip0pt%
+  \vskip0pt%
 }
 
 % Formula highlighting
 \usepackage[beamer,customcolors]{hf-tikz}
-\hfsetfillcolor{steelblue!10}
-\hfsetbordercolor{steelblue!50}
+\hfsetfillcolor{azure!10}
+\hfsetbordercolor{azure!50}
 
 % Make code blocks smaller
 \usepackage{fancyvrb}
