@@ -1,0 +1,93 @@
+rule all:
+    input:
+        "../tex/math-traditional.tex",
+        "../tex/math-unicode.tex",
+        "../examples/latex/article.pdf",
+        "../examples/latex/talk.pdf",
+        "../examples/quarto/article.pdf",
+        "../examples/quarto/talk.pdf",
+        "../showcase/showcase.pdf"
+
+rule check:
+    shell: "snakemake --forceall all"
+
+rule generate:
+    input:
+        "core.tex",
+        "traditional.tex",
+        "unicode.tex",
+        "generate"
+    output:
+        "../tex/math-traditional.tex",
+        "../tex/math-unicode.tex"
+    shell: "python3 generate"
+
+rule showcase_tex:
+    input:
+        "../tex/math-traditional.tex",
+        "showcase"
+    output:
+        "../showcase/showcase.tex"
+    shell: "python3 showcase"
+
+rule showcase_pdf:
+    input: "../showcase/showcase.tex"
+    output: "../showcase/showcase.pdf"
+    shell:
+        """
+        cd ../showcase
+        latexmk --xelatex showcase.tex
+        """
+
+rule latex_article:
+    input:
+        "../examples/latex/article.tex",
+        "../examples/latex/ref.bib",
+        "../bst/smallcap.bst",
+        "../tex/breheny-article.tex",
+        "../tex/breheny-code.tex",
+        "../tex/breheny-algorithm.tex",
+        "../tex/mar-compact.tex",
+        "../tex/math-traditional.tex"
+    output: "../examples/latex/article.pdf"
+    shell:
+        """
+        cd ../examples/latex
+        latexmk --xelatex -output-directory=article article.tex
+        cp article/article.pdf .
+        """
+
+rule latex_talk:
+    input:
+        "../examples/latex/talk.tex",
+        "../tex/math-traditional.tex",
+        "../tex/breheny-slides.tex",
+        "../tex/breheny-code.tex"
+    output: "../examples/latex/talk.pdf"
+    shell:
+        """
+        cd ../examples/latex
+        latexmk --xelatex -output-directory=talk talk.tex
+        cp talk/talk.pdf .
+        """
+
+rule quarto_article:
+    input:
+        "../examples/quarto/article.qmd",
+        "../examples/quarto/ref.bib",
+        "../bst/smallcap.bst",
+        "../templates/article.tex",
+        "../tex/breheny-article.tex",
+        "../tex/mar-compact.tex",
+        "../tex/math-traditional.tex"
+    output: "../examples/quarto/article.pdf"
+    shell: "cd ../examples/quarto && quarto render article.qmd"
+
+rule quarto_talk:
+    input:
+        "../examples/quarto/talk.qmd",
+        "../templates/slides.tex",
+        "../tex/breheny-slides.tex",
+        "../tex/math-traditional.tex"
+    output: "../examples/quarto/talk.pdf"
+    shell: "cd ../examples/quarto && quarto render talk.qmd"
