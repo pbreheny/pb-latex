@@ -24,6 +24,20 @@ $endfor$
 \makeatletter
 \renewcommand{\tagform@}[1]{}
 \makeatother
+\makeatletter
+\let\org@dollardollarbegin\dollardollar@begin
+\def\dollardollar@begin{%
+  \ifvmode
+    \prevdepth=-1000pt
+  \fi
+  \org@dollardollarbegin
+}
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{5pt}
+  \setlength{\abovedisplayshortskip}{5pt}
+  \setlength{\belowdisplayskip}{5pt}
+  \setlength{\belowdisplayshortskip}{5pt}
+}
 
 \title$if(short-title)$[$short-title$]$endif${$title$}
 
@@ -63,7 +77,7 @@ $if(title)$
   \titlepage
   $if(logo)$
   \UIlogo
-  $endif$  
+  $endif$
   $if(joint)$
   \begin{center}
     \begin{small}
