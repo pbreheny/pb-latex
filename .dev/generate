@@ -24,7 +24,7 @@ GREEK = {
     "e": "eta",
     "t": "theta",
     "l": "lambda",
-    "m": "mu",
+    "mu": "mu",
     "n": "nu",
     "p": "pi",
     "s": "sigma",
@@ -45,7 +45,7 @@ GREEK_ABBREVIATIONS = {
 }
 GA_REV = {v: k for k, v in GREEK_ABBREVIATIONS.items()}
 GREEK_STAR = ["b", "t", "T"]
-GREEK_TILDE = ["b", "e", "l", "m", "n", "t"]
+GREEK_TILDE = ["b", "e", "l", "mu", "n", "t"]
 
 
 def read(path: Path) -> str:
