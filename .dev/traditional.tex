@@ -7,7 +7,8 @@
 \numberwithin{equation}{section}
 
 % Fisher/observed information
-\providecommand{\oI}{\bm{\mathcal{I}}}
-\providecommand{\oV}{\bm{\mathcal{V}}}
+\ifdefined\mathbfcal\else\DeclareMathAlphabet{\mathbfcal}{OMS}{cmsy}{b}{n}\fi
+\providecommand{\oI}{\mathbfcal{I}}
+\providecommand{\oV}{\mathbfcal{V}}
 \providecommand{\fI}{\mathbfscr{I}}
 \providecommand{\fV}{\mathbfscr{V}}
