@@ -12,9 +12,10 @@ In particular, `commands.tex` defines a ton of shortcuts that you may or may not
 * `tex`: Files to include in LaTeX preamble
 * `templates`: If you use Quarto or Pandoc, these set up the preamble for you.
 * `examples`: Reproducible examples using these templates and frontmatter
-  * `examples/latex`: These use LaTeX directly
-  * `examples/quarto`: These use LaTeX indirectly, through Quarto
-* `showcase/showcase.pdf`: Illustrates all of the math macros/shortcuts. Note that this uses unicode fonts; some symbols will look slightly different if you have a different font system set up.
+  * `examples/latex`: These use LaTeX directly (rendered: [article](https://github.com/pbreheny/pb-latex/releases/download/latest/latex-article.pdf), [talk](https://github.com/pbreheny/pb-latex/releases/download/latest/latex-talk.pdf))
+  * `examples/quarto`: These use LaTeX indirectly, through Quarto (rendered: [article](https://github.com/pbreheny/pb-latex/releases/download/latest/quarto-article.pdf), [talk](https://github.com/pbreheny/pb-latex/releases/download/latest/quarto-talk.pdf))
+* `katex/katex.html`: The same math macros for KaTeX, as an HTML include (e.g., for a Jekyll `_includes` folder).
+* [`showcase.pdf`](https://github.com/pbreheny/pb-latex/releases/download/latest/showcase.pdf): Illustrates all of the math macros/shortcuts. Note that this uses unicode fonts; some symbols will look slightly different if you have a different font system set up.
 
 ## Installation
 

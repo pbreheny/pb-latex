@@ -2,6 +2,7 @@ rule all:
     input:
         "../tex/math-traditional.tex",
         "../tex/math-unicode.tex",
+        "../katex/katex.html",
         "../examples/latex/article.pdf",
         "../examples/latex/talk.pdf",
         "../examples/quarto/article.pdf",
@@ -11,15 +12,37 @@ rule all:
 rule check:
     shell: "snakemake --forceall all"
 
+# Upload rendered PDFs to the rolling "latest" GitHub release (PDFs are not tracked in git)
+rule publish:
+    input: rules.all.input
+    shell:
+        """
+        cd ..
+        tmp=$(mktemp -d)
+        cp examples/latex/article.pdf  "$tmp/latex-article.pdf"
+        cp examples/latex/talk.pdf     "$tmp/latex-talk.pdf"
+        cp examples/quarto/article.pdf "$tmp/quarto-article.pdf"
+        cp examples/quarto/talk.pdf    "$tmp/quarto-talk.pdf"
+        cp showcase/showcase.pdf       "$tmp/showcase.pdf"
+        gh release view latest >/dev/null 2>&1 || \
+            gh release create latest --title "Rendered PDFs" \
+            --notes "Current rendered examples and showcase; overwritten on each publish."
+        gh release upload latest "$tmp"/*.pdf --clobber
+        rm -r "$tmp"
+        """
+
 rule generate:
     input:
         "core.tex",
         "traditional.tex",
         "unicode.tex",
+        "katex.tex",
+        "katex.html",
         "generate"
     output:
         "../tex/math-traditional.tex",
-        "../tex/math-unicode.tex"
+        "../tex/math-unicode.tex",
+        "../katex/katex.html"
     shell: "python3 generate"
 
 rule showcase_tex:
