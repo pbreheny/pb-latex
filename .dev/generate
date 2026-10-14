@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 
 from pathlib import Path
+import json
+import re
 import string
 
 ROOT = Path(__file__).resolve().parents[1]
 
 SRC = ROOT / ".dev"
 OUT = ROOT / "tex"
+KATEX_OUT = ROOT / "katex"
 
 PROBLEM_LOWERCASE = ["c", "d", "u", "v"]
 SAFE_LOWERCASE = [x for x in string.ascii_lowercase if x not in PROBLEM_LOWERCASE]
@@ -57,6 +60,8 @@ def bold_letter(letter: str, engine: str) -> str:
         return rf"\mathbf{{{letter}}}"
     if engine == "unicode":
         return rf"\symbf{{{letter}}}"
+    if engine == "katex":
+        return rf"\mathbf{{{letter}}}"
     raise ValueError(engine)
 
 
@@ -65,6 +70,8 @@ def bold_symbol(symbol: str, engine: str) -> str:
         return rf"\bm{{\{symbol}}}"
     if engine == "unicode":
         return rf"\symbf{{\{symbol}}}"
+    if engine == "katex":
+        return rf"\boldsymbol{{\{symbol}}}"
     raise ValueError(engine)
 
 
@@ -85,6 +92,10 @@ def make_letter_macros(engine: str) -> str:
     for x in SAFE_LOWERCASE:
         lines.append(rf"\def\{x}{{{bold_letter(x, engine)}}}")
     for x in PROBLEM_LOWERCASE:
+        if engine == "katex":
+            # KaTeX is math-only, so no text-mode accent guard is needed
+            lines.append(rf"\def\{x}{{{bold_letter(x, engine)}}}")
+            continue
         if engine == "traditional":
             spaces = "                                                          "
         else:
@@ -185,9 +196,104 @@ def build(engine: str) -> str:
     ])
 
 
+def read_group(text: str, i: int) -> tuple[str, int]:
+    """Read a balanced {...} group starting at text[i]; return (contents, next index)."""
+    if text[i] != "{":
+        raise ValueError(f"Expected '{{' at position {i} in: {text}")
+    depth = 0
+    for j in range(i, len(text)):
+        if text[j] == "\\":
+            continue
+        if text[j] == "{" and text[j - 1] != "\\":
+            depth += 1
+        elif text[j] == "}" and text[j - 1] != "\\":
+            depth -= 1
+            if depth == 0:
+                return text[i + 1:j], j + 1
+    raise ValueError(f"Unbalanced braces in: {text}")
+
+
+def strip_comment(line: str) -> str:
+    return re.sub(r"(?<!\\)%.*", "", line).strip()
+
+
+KATEX_SKIP = re.compile(r"\\(usepackage|numberwithin|set\w*font|let|ifdefined|DeclareMathAlphabet)\b")
+NAME = re.compile(r"\\([A-Za-z]+)")
+
+
+def latex_to_katex(tex: str) -> list[tuple[str, str] | str]:
+    """
+    Convert LaTeX macro definitions into KaTeX (name, expansion) pairs.
+    Section comments ("% Foo") are passed through as strings.
+    Unrecognized definitions raise an error rather than being silently dropped.
+    """
+    out = []
+    for raw in tex.splitlines():
+        if re.match(r"^\s*%\s*\S", raw) and not raw.strip().startswith("%%"):
+            out.append(raw.strip().lstrip("%").strip())
+            continue
+        line = strip_comment(raw)
+        if not line or KATEX_SKIP.match(line):
+            continue
+
+        m = re.match(r"\\DeclareMathOperator(\*?)\{\\([A-Za-z]+)\}", line)
+        if m:
+            body, _ = read_group(line, m.end())
+            out.append((m.group(2), rf"\operatorname{m.group(1)}{{{body}}}"))
+            continue
+
+        m = re.match(r"\\DeclarePairedDelimiter\{\\([A-Za-z]+)\}", line)
+        if m:
+            left, i = read_group(line, m.end())
+            right, _ = read_group(line, i)
+            out.append((m.group(1), rf"{left} #1 {right}"))
+            continue
+
+        m = re.match(r"\\(?:providecommand|newcommand|renewcommand)\{\\([A-Za-z]+)\}(?:\[\d\])?", line)
+        if m:
+            body, _ = read_group(line, m.end())
+            out.append((m.group(1), body))
+            continue
+
+        m = re.match(r"\\def\\([A-Za-z]+)", line)
+        if m:
+            body, _ = read_group(line, m.end())
+            out.append((m.group(1), body))
+            continue
+
+        raise ValueError(f"Don't know how to convert to KaTeX: {raw}")
+    return out
+
+
+def build_katex() -> str:
+    tex = "\n".join([
+        read(SRC / "katex.tex"),
+        read(SRC / "core.tex"),
+        make_letter_macros("katex"),
+    ])
+    lines = []
+    for item in latex_to_katex(tex):
+        if isinstance(item, str):
+            if lines:
+                lines.append("")
+            lines.append(f"        // {item}")
+        else:
+            name, body = item
+            lines.append(f"        {json.dumps('\\' + name)}: {json.dumps(body)},")
+    # Drop trailing comma on the last entry
+    lines[-1] = lines[-1].rstrip(",")
+    template = read(SRC / "katex.html")
+    return template.replace("%%MACROS%%", "\n".join(lines))
+
+
 OUT.mkdir(exist_ok=True)
 
 for engine in ["traditional", "unicode"]:
     target = OUT / f"math-{engine}.tex"
     target.write_text(build(engine), encoding="utf-8")
     print(f"Wrote {target}")
+
+KATEX_OUT.mkdir(exist_ok=True)
+target = KATEX_OUT / "katex.html"
+target.write_text(build_katex(), encoding="utf-8")
+print(f"Wrote {target}")
