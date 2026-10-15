@@ -246,7 +246,11 @@ def latex_to_katex(tex: str) -> list[tuple[str, str] | str]:
         if m:
             left, i = read_group(line, m.end())
             right, _ = read_group(line, i)
-            out.append((m.group(1), rf"{left} #1 {right}"))
+            # Mimic mathtools: \abs*{x} scales the delimiters with \left/\right
+            name = m.group(1)
+            out.append((name, rf"\@ifstar{{\{name}@star}}{{\{name}@nostar}}"))
+            out.append((f"{name}@star", rf"\left{left} #1 \right{right}"))
+            out.append((f"{name}@nostar", rf"{left} #1 {right}"))
             continue
 
         m = re.match(r"\\(?:providecommand|newcommand|renewcommand)\{\\([A-Za-z]+)\}(?:\[\d\])?", line)
